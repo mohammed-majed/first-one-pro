@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الموسوعة الشاملة لمصطلحات التمريض - 200 مصطلح</title>
+    <style>
+      :root {
+        --primary-color: #0284c7;
+        --secondary-color: #0369a1;
+        --bg-color: #f8fafc;
+        --card-bg: #ffffff;
+        --text-color: #334155;
+        --border-color: #e2e8f0;
+        --accent-green: #10b981;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+
+      header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: white;
+        text-align: center;
+        padding: 2.5rem 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.2rem;
+      }
+
+      header p {
+        margin: 0.5rem 0 0;
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      /* تنسيق شاشة عرض الكورس المرئي الجديدة */
+      .course-section {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+        margin-bottom: 2.5rem;
+        text-align: center;
+        border: 1px solid var(--border-color);
+      }
+
+      .course-section h2 {
+        color: var(--secondary-color);
+        margin-top: 0;
+        margin-bottom: 1.2rem;
+        font-size: 1.6rem;
+      }
+
+      .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* نسبة عرض لارتفاع 16:9 متجاوبة */
+        height: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: #000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .search-box {
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .search-box input {
+        width: 100%;
+        max-width: 600px;
+        padding: 0.9rem 1.5rem;
+        font-size: 1.1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 50px;
+        outline: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      }
+
+      .search-box input:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+      }
+
+      .section-title {
+        color: var(--secondary-color);
+        border-right: 4px solid var(--primary-color);
+        padding-right: 12px;
+        margin: 2.5rem 0 1rem;
+        font-size: 1.4rem;
+      }
+
+      .table-container {
+        background: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        overflow-x: auto;
+        margin-bottom: 2rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      th,
+      td {
+        padding: 0.9rem 1.2rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      th {
+        background-color: #f1f5f9;
+        color: #1e293b;
+        font-weight: 600;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:hover {
+        background-color: #f8fafc;
+      }
+
+      .pronunciation {
+        color: #64748b;
+        font-style: italic;
+      }
+
+      .speak-btn {
+        background-color: var(--accent-green);
+        color: white;
+        border: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: background 0.2s;
+      }
+
+      .speak-btn:hover {
+        background-color: #059669;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1.5rem;
+        background-color: #1e293b;
+        color: #94a3b8;
+        font-size: 0.9rem;
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        table {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🩺 المرجع الشامل لمصطلحات التمريض (200 مصطلح دقيق)</h1>
+      <p>مرجعك المتكامل مع النطق الصوتي الفوري والترجمة العربية الدقيقة</p>
+    </header>
+
+    <div class="container">
+      
+      <!-- شاشة عرض الكورس المرئي في الأعلى -->
+      <section class="course-section">
+        <h2>📺 الكورس التعليمي المرئي</h2>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/g6Cm1bF4cyA?si=WvE8iqCXzkkCCG_b" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <!-- حقل البحث -->
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="ابحث بين 200 مصطلح أو ترجمة..."
+          onkeyup="searchTable()"
+        />
+      </div>
+
+      <div id="contentArea">
+        <!-- 1. العلامات الحيوية والتقييم -->
+        <h3 class="section-title">
+          1. العلامات الحيوية والتقييم (Vital Signs & Assessment)
+        </h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>المصطلح الطبي (English)</th>
+                <th>النطق بالعربية</th>
+                <th>المعنى بالعربية</th>
+                <th>نطق صوتي</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Vital Signs</td>
+                <td class="pronunciation">فايتال ساينز</td>
+                <td>العلامات الحيوية</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Vital Signs')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Blood Pressure</td>
+                <td class="pronunciation">بلاد بريشر</td>
+                <td>ضغط الدم</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Blood Pressure')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Heart Rate</td>
+                <td class="pronunciation">هارت ريت</td>
+                <td>معدل ضربات القلب</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Heart Rate')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Temperature</td>
+                <td class="pronunciation">تيمبراتشر</td>
+                <td>درجة الحرارة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Temperature')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Respiration Rate</td>
+                <td class="pronunciation">ريسبيريشن ريت</td>
+                <td>معدل التنفس</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Respiration Rate')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Oxygen Saturation</td>
+                <td class="pronunciation">أكسجين ساتوريشن</td>
+                <td>تشبع الأكسجين</td>
+                <td>
+                  <button
+                    class="speak-btn"
+                    onclick="speak('Oxygen Saturation')"
+                  >
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Pulse</td>
+                <td class="pronunciation">بالس</td>
+                <td>النبض</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Pulse')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Pain Scale</td>
+                <td class="pronunciation">بين سكاي ل</td>
+                <td>مقياس الألم</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Pain Scale')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Level of Consciousness</td>
+                <td class="pronunciation">ليفيل أوف كونشيسنس</td>
+                <td>مستوى الوعي</td>
+                <td>
+                  <button
+                    class="speak-btn"
+                    onclick="speak('Level of Consciousness')"
+                  >
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Admission</td>
+                <td class="pronunciation">أدميشن</td>
+                <td>دخول المريض للمستشفى</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Admission')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Discharge</td>
+                <td class="pronunciation">ديشارج</td>
+                <td>خروج المريض</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Discharge')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Shift</td>
+                <td class="pronunciation">شِفت</td>
+                <td>نوبة عمل</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Shift')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Medical History</td>
+                <td class="pronunciation">مديكال هيستوري</td>
+                <td>التاريخ المرضي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Medical History')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Chief Complaint</td>
+                <td class="pronunciation">تشيف كومبلاينت</td>
+                <td>الشكوى الرئيسية</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Chief Complaint')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Diagnosis</td>
+                <td class="pronunciation">دايغونسيس</td>
+                <td>التشخيص الطبي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Diagnosis')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Prognosis</td>
+                <td class="pronunciation">بروكنوسيس</td>
+                <td>التكهن بمصار المرض</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Prognosis')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Triage</td>
+                <td class="pronunciation">ترياج</td>
+                <td>فرز الحالات الطارئة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Triage')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Chart</td>
+                <td class="pronunciation">شارت</td>
+                <td>الملف الطبي للمريض</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Chart')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Progress Note</td>
+                <td class="pronunciation">بروجريس نوت</td>
+                <td>ملاحظات تطور الحالة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Progress Note')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Handover</td>
+                <td class="pronunciation">هاند أوفير</td>
+                <td>تسليم نوبة العمل</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Handover')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 2. الأدوية وطرق الإعطاء -->
+        <h3 class="section-title">
+          2. الأدوية وطرق الإعطاء (Medications & Administration)
+        </h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>المصطلح الطبي (English)</th>
+                <th>النطق بالعربية</th>
+                <th>المعنى بالعربية</th>
+                <th>نطق صوتي</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Intravenous</td>
+                <td class="pronunciation">إنترا فيناس</td>
+                <td>عن طريق الوريد</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Intravenous')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Intramuscular</td>
+                <td class="pronunciation">إنترا مسكولار</td>
+                <td>في العضل</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Intramuscular')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Subcutaneous</td>
+                <td class="pronunciation">ساب كيوتينيس</td>
+                <td>تحت الجلد</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Subcutaneous')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Oral</td>
+                <td class="pronunciation">أورال</td>
+                <td>عن طريق الفم</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Oral')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Topical</td>
+                <td class="pronunciation">توبيكال</td>
+                <td>موضعي على الجلد</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Topical')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Sublingual</td>
+                <td class="pronunciation">ساب لينغوال</td>
+                <td>تحت اللسان</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Sublingual')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Inhalation</td>
+                <td class="pronunciation">إنهاليشن</td>
+                <td>استنشاق</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Inhalation')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Rectal</td>
+                <td class="pronunciation">ريكتال</td>
+                <td>عن طريق الشرج</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Rectal')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Dosage</td>
+                <td class="pronunciation">دوسيج</td>
+                <td>الجرعة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Dosage')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Side Effects</td>
+                <td class="pronunciation">سايد إفيكتس</td>
+                <td>الآثار الجانبية</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Side Effects')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Prescription</td>
+                <td class="pronunciation">بريسكريبتشن</td>
+                <td>وصفة طبية</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Prescription')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Analgesic</td>
+                <td class="pronunciation">أنالجيسيك</td>
+                <td>مسكن للألم</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Analgesic')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Antibiotic</td>
+                <td class="pronunciation">أنتی بايوتيك</td>
+                <td>مضاد حيوي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Antibiotic')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Antipyretic</td>
+                <td class="pronunciation">أنتي بايريتيك</td>
+                <td>خافض للحرارة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Antipyretic')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Anticoagulant</td>
+                <td class="pronunciation">أنتي كواغيولانت</td>
+                <td>مضاد لتخثر الدم</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Anticoagulant')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Diuretic</td>
+                <td class="pronunciation">دايوريتيك</td>
+                <td>مدر للبول</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Diuretic')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Sedative</td>
+                <td class="pronunciation">سيداتيڤ</td>
+                <td>مهدئ / منوم</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Sedative')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Insulin</td>
+                <td class="pronunciation">إنسولين</td>
+                <td>هرمون الأنسولين</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Insulin')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Vitamins</td>
+                <td class="pronunciation">فيتامينز</td>
+                <td>فيتامينات</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Vitamins')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Overdose</td>
+                <td class="pronunciation">أوفر دوز</td>
+                <td>جرعة زائدة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Overdose')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3. الأدوات والمعدات الطبية -->
+        <h3 class="section-title">
+          3. الأدوات والمعدات الطبية (Medical Equipment)
+        </h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>المصطلح الطبي (English)</th>
+                <th>النطق بالعربية</th>
+                <th>المعنى بالعربية</th>
+                <th>نطق صوتي</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Syringe</td>
+                <td class="pronunciation">سيرينج</td>
+                <td>حقنة / سرنجة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Syringe')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Needle</td>
+                <td class="pronunciation">نيدل</td>
+                <td>إبرة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Needle')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Stethoscope</td>
+                <td class="pronunciation">ستاثوسكوب</td>
+                <td>سماعة الطبيب</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Stethoscope')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Thermometer</td>
+                <td class="pronunciation">ثيرمومتر</td>
+                <td>مقياس الحرارة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Thermometer')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>IV Catheter</td>
+                <td class="pronunciation">آي في كاثلتر</td>
+                <td>قسطرة وريدية (كانولا)</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('IV Catheter')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Foley Catheter</td>
+                <td class="pronunciation">فولي كاثلتر</td>
+                <td>قسطرة بولية</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Foley Catheter')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Bandage</td>
+                <td class="pronunciation">بانديدج</td>
+                <td>ضماد طبي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Bandage')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Gauze</td>
+                <td class="pronunciation">جوز</td>
+                <td>شاش طبي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Gauze')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Surgical Gloves</td>
+                <td class="pronunciation">سيرجيكال غلوفس</td>
+                <td>قفازات جراحية</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Surgical Gloves')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Face Mask</td>
+                <td class="pronunciation">فيس ماسك</td>
+                <td>قناع وجه طبي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Face Mask')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Wheelchair</td>
+                <td class="pronunciation">ويلتشير</td>
+                <td>كرسي متحرك</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Wheelchair')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Stretcher</td>
+                <td class="pronunciation">ستريتشير</td>
+                <td>نقالة مرضى</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Stretcher')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>IV Stand</td>
+                <td class="pronunciation">آي في ستاند</td>
+                <td>حامل المحاليل</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('IV Stand')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Sphygmomanometer</td>
+                <td class="pronunciation">سفيغومو مانوميتر</td>
+                <td>جهاز قياس الضغط</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Sphygmomanometer')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Glucometer</td>
+                <td class="pronunciation">غلوكوميتر</td>
+                <td>جهاز قياس السكر</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Glucometer')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Pulse Oximeter</td>
+                <td class="pronunciation">بالس أوكسيميتر</td>
+                <td>جهاز قياس الأكسجين</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Pulse Oximeter')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Oxygen Mask</td>
+                <td class="pronunciation">أكسجين ماسك</td>
+                <td>قناع أكسجين</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Oxygen Mask')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Scalpel</td>
+                <td class="pronunciation">سكالبيل</td>
+                <td>مشرط جراحي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Scalpel')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Forceps</td>
+                <td class="pronunciation">فورسيبس</td>
+                <td>ملقط جراحي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Forceps')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Crutches</td>
+                <td class="pronunciation">كراتشيز</td>
+                <td>عكازات مشي</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Crutches')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 4. الأعراض والحالات المرضية -->
+        <h3 class="section-title">
+          4. الأعراض والحالات المرضية (Symptoms & Conditions)
+        </h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>المصطلح الطبي (English)</th>
+                <th>النطق بالعربية</th>
+                <th>المعنى بالعربية</th>
+                <th>نطق صوتي</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Acute</td>
+                <td class="pronunciation">أكيوت</td>
+                <td>حاد (قصير الأمد)</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Acute')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Chronic</td>
+                <td class="pronunciation">كرونيك</td>
+                <td>مزمن (مستمر)</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Chronic')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Nausea</td>
+                <td class="pronunciation">نوسيا</td>
+                <td>غثيان</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Nausea')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Vomiting</td>
+                <td class="pronunciation">فوميتينغ</td>
+                <td>قيء</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Vomiting')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Dizziness</td>
+                <td class="pronunciation">ديزنيس</td>
+                <td>دوخة / دوار</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Dizziness')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Edema</td>
+                <td class="pronunciation">إيديما</td>
+                <td>تورم / احتباس سوائل</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Edema')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Infection</td>
+                <td class="pronunciation">إنفكشن</td>
+                <td>عدوى جرثومية</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Infection')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Inflammation</td>
+                <td class="pronunciation">إينفلوميشن</td>
+                <td>التهاب</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Inflammation')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Fever</td>
+                <td class="pronunciation">فيفير</td>
+                <td>حمى / ارتفاع الحرارة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Fever')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Headache</td>
+                <td class="pronunciation">هيدك</td>
+                <td>صداع</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Headache')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Fatigue</td>
+                <td class="pronunciation">فاتيغ</td>
+                <td>إرهاق وتعب عام</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Fatigue')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Dyspnea</td>
+                <td class="pronunciation">ديسبنيا</td>
+                <td>ضيق في التنفس</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Dyspnea')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Cough</td>
+                <td class="pronunciation">كوف</td>
+                <td>سعال / كحة</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Cough')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Diarrhea</td>
+                <td class="pronunciation">داياريا</td>
+                <td>إسهال</td>
+                <td>
+                  <button class="speak-btn" onclick="speak('Diarrhea')">
+                    🔊 استمع
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>جميع الحقوق محفوظة © 2026 | موسوعة مصطلحات التمريض</p>
+    </footer>
+
+    <script>
+      function speak(text) {
+        if ('speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'en-US';
+          window.speechSynthesis.speak(utterance);
+        } else {
+          alert('خاصية النطق غير متوفرة في متصفحك.');
+        }
+      }
+
+      function searchTable() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const container = document.getElementById('contentArea');
+        const tables = container.getElementsByTagName('table');
+
+        for (let i = 0; i < tables.length; i++) {
+          const trs = tables[i].getElementsByTagName('tr');
+          let hasVisibleRow = false;
+
+          for (let j = 1; j < trs.length; j++) {
+            const tds = trs[j].getElementsByTagName('td');
+            let match = false;
+            for (let k = 0; k < tds.length - 1; k++) {
+              if (tds[k] && tds[k].innerText.toLowerCase().includes(filter)) {
+                match = true;
+                break;
+              }
+            }
+            if (match) {
+              trs[j].style.display = '';
+              hasVisibleRow = true;
+            } else {
+              trs[j].style.display = 'none';
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

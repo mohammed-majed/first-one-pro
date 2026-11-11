@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة طلاب التمريض | الإرشادات والأقسام التعليمية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- خط عربي فاخر (Cairo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        medicalDark: '#0B132B',
+                        medicalCard: '#1C2541',
+                        medicalAccent: '#48CAE4',
+                        medicalGlow: '#00B4D8',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #070B19 0%, #0B132B 50%, #111E3E 100%);
+            color: #E2E8F0;
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(28, 37, 65, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(72, 202, 228, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .glass-card:hover {
+            border-color: rgba(72, 202, 228, 0.4);
+            box-shadow: 0 15px 40px rgba(72, 202, 228, 0.15);
+            transform: translateY(-5px);
+        }
+        .hero-bg {
+            background: radial-gradient(circle at center, rgba(72, 202, 228, 0.1) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="glass-card border-b border-cyan-500/20 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30 text-white text-2xl">
+                    <i class="fa-solid fa-user-nurse"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black text-white tracking-wide">بوابة طالب التمريض</h1>
+                    <p class="text-xs text-cyan-400 font-semibold">دليلك الأكاديمي والعملي المعتمد</p>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-6 space-x-reverse text-sm font-medium text-slate-300">
+                <a href="#intro" class="hover:text-cyan-400 transition">الإرشادات التعليمية</a>
+                <a href="#sections" class="hover:text-cyan-400 transition">الأقسام والمهارات</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+        <!-- القسم الأول: الواجهة الإرشادية لطلاب التمريض -->
+        <section id="intro" class="glass-card hero-bg rounded-3xl p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute -left-20 -top-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-bold mb-2">
+                    <i class="fa-solid fa-compass-drafting"></i> الخطة التوجيهية الأولى للطالب
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-white leading-tight">
+                    طريقك الاحترافي نحو <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">التميز التمريضي</span>
+                </h2>
+                <p class="text-slate-300 text-base md:text-lg leading-relaxed">
+                    أنت كطالب تمريض، تعليمك يعتمد على <span class="text-cyan-300 font-bold">50% نظري</span> و <span class="text-cyan-300 font-bold">50% عملي</span> بشكل عام. لقد لخصت لك هنا الجزء النظري ورسمت لك الطريق الصحيح لكي لا تشتت أفكارك. الموقع هنا خطوة أولى بسيطة ولكنها بالغة الأهمية لتنظيم بوصلتك العلمية.
+                </p>
+                
+                <!-- بطاقات توضيحية داخل الإرشادات -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 text-right">
+                    <div class="bg-medicalCard/80 p-6 rounded-2xl border border-slate-700/60 shadow-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-lg">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">الجزء النظري (50%)</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            تم اختصاره وتوجيهك للطريق الصحيح لتبسيط العلوم الأساسية وفهم المفاهيم الطبية الكبرى دون تشتت بين المراجع كبيرة الحجم في بداياتك.
+                        </p>
+                    </div>
+
+                    <div class="bg-medicalCard/80 p-6 rounded-2xl border border-slate-700/60 shadow-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg">
+                                <i class="fa-solid fa-syringe"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">الجزء العملي (50%)</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            ستتعلم فيه كيفية التعامل مع الأجهزة وكيفية التواصل المباشر مع المريض. يكفي كخطوة أولى أن تتقن <span class="text-cyan-300 font-semibold">قياس وقراءة العلامات الحيوية، التعامل مع الأدوية، التحليل، ورعاية المريض</span>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم الثاني: الصناديق المرتبة والانتقال لصفحات مخصصة -->
+        <section id="sections" class="space-y-8">
+            <div class="text-center space-y-3">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">الأقسام والمهارات الأساسية</h2>
+                <p class="text-slate-400 text-sm">اختر القسم المطلوب للانتقال إلى الصفحة التعليمية التفصيلية الخاصة به</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- الصندوق الجديد: الموقع التعليمي -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 border-2 border-cyan-500/40 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 bg-cyan-500 text-slate-950 text-xs font-black px-3 py-1 rounded-br-xl">مميز</div>
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white text-2xl mb-5 shadow-lg shadow-cyan-500/30">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">الموقع التعليمي</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            بوابة شاملة تضم المصادر التفاعلية، الدروس الإضافية، والروابط التعليمية المباشرة لتطوير مهاراتك الأكاديمية والعملية.
+                        </p>
+                    </div>
+                    <!-- رابط الصفحة الخارجية -->
+                    <a href="https://mohammedmajedk7-arch.github.io/drop/" target="_blank" class="w-full py-3 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-sm text-center transition duration-300 shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2">
+                        <span>انتقل للموقع</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <!-- الصندوق الأول -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-2xl mb-5 shadow-lg shadow-cyan-500/20">
+                            <i class="fa-solid fa-hospital-user"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">1. أساسيات التمريض</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            المبادئ الجوهرية لمهنة التمريض، المهارات السريرية الأولية، إجراءات السلامة وضمان بيئة آمنة للمريض.
+                        </p>
+                    </div>
+                    <a href="baisc.html" class="w-full py-3 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-white font-bold text-sm text-center transition duration-300 border border-cyan-500/30 flex items-center justify-center gap-2">
+                        <span>استعرض القسم</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <!-- الصندوق الثاني -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-white text-2xl mb-5 shadow-lg shadow-indigo-500/20">
+                            <i class="fa-solid fa-pills"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">2. الأدوية المهمة والطورلية</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            دليل الأدوية الأساسية في الأقسام المختلفة، أدوية الطوارئ (الطورلية)، محاذير الإعطاء والتفاعلات الدوائية الشائعة.
+                        </p>
+                    </div>
+                    <a href="pharmah.html" class="w-full py-3 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-white font-bold text-sm text-center transition duration-300 border border-cyan-500/30 flex items-center justify-center gap-2">
+                        <span>استعرض القسم</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <!-- الصندوق الثالث -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-2xl mb-5 shadow-lg shadow-emerald-500/20">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">3. آلية تحليل وإعطاء الجرعات</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            طرق حساب الجرعات الدوائية بدقة، معادلات التحويل، وحساب معدلات تدفق المحاليل الوريدية (IV Drip Rates).
+                        </p>
+                    </div>
+                    <a href="dose.html" class="w-full py-3 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-white font-bold text-sm text-center transition duration-300 border border-cyan-500/30 flex items-center justify-center gap-2">
+                        <span>استعرض القسم</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <!-- الصندوق الرابع -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl mb-5 shadow-lg shadow-amber-500/20">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">4. قراءة التحاليل</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            القيم الطبيعية لفحوصات الدم المخبرية (CBC, Electrolytes, Coagulation) وكيفية قراءتها وفهم دلالاتها الإكلينيكية.
+                        </p>
+                    </div>
+                    <a href="cpc.html" class="w-full py-3 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-white font-bold text-sm text-center transition duration-300 border border-cyan-500/30 flex items-center justify-center gap-2">
+                        <span>استعرض القسم</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <!-- الصندوق الخامس -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center text-white text-2xl mb-5 shadow-lg shadow-rose-500/20">
+                            <i class="fa-solid fa-hands-holding-child"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">5. التعامل ورعاية المريض</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            مهارات الاتصال العلاجي، التقييم النفسي والجسدي، رعاية المرضى ذوي الاحتياجات الخاصة، والتعامل مع الحالات الإنسانية.
+                        </p>
+                    </div>
+                    <a href="adm.html" class="w-full py-3 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-white font-bold text-sm text-center transition duration-300 border border-cyan-500/30 flex items-center justify-center gap-2">
+                        <span>استعرض القسم</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <!-- الصندوق السادس -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white text-2xl mb-5 shadow-lg shadow-purple-500/20">
+                            <i class="fa-solid fa-book-medical"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">6. المصطلحات الطبية</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            دليل السوابق واللاحقات الطبية (Medical Prefixes & Suffixes)، واختصارات المستشفيات الشائعة لتسهيل فهم التقارير.
+                        </p>
+                    </div>
+                    <a href="system.html" class="w-full py-3 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-400 hover:text-white font-bold text-sm text-center transition duration-300 border border-cyan-500/30 flex items-center justify-center gap-2">
+                        <span>استعرض القسم</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-slate-800 bg-medicalDark/80 py-8 text-center text-slate-500 text-sm">
+        <p>جميع الحقوق محفوظة © 2026 | منصة طلاب التمريض</p>
+    </footer>
+
+</body>
+</html>

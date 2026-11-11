@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أساسيات التمريض - البوابة التعليمية التفاعلية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        medical: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        clinical: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#38bdf8'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.9);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Header / Navigation Bar -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/30">
+                    <i class="fa-solid fa-user-nurse text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">أساسيات التمريض</h1>
+                    <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold">Fundamentals of Nursing</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+
+                <!-- WhatsApp Quick Contact Button -->
+                <a href="https://wa.me/9707483258" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/20 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>تواصل مع المطور</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+        <!-- Hero Section -->
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="inline-block bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-sky-200 dark:border-sky-800">
+                البوابة التعليمية السريرية
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mb-4 leading-tight">
+                استكشف المهارات الأساسية للرعاية التمريضية الحديثة
+            </h2>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+                انقر على أي بطاقة أدناه لعرض الشرح التفصيلي، العناصر السريرية، المعايير الطبيعية، والأمثلة التطبيقية الميدانية.
+            </p>
+        </div>
+
+        <!-- Video Player Section (قسم الشرح بالفيديو) -->
+        <div class="max-w-4xl mx-auto mb-16">
+            <div class="glass-card rounded-3xl p-4 sm:p-6 border border-slate-200/80 dark:border-slate-800 shadow-xl">
+                <div class="flex items-center justify-between mb-4 px-2">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-circle-play"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">شرح اساسيات التمريض</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">فيديو تعليمي تفاعلي شامل للمهارات الميدانية</p>
+                        </div>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        مباشر / HD
+                    </span>
+                </div>
+                
+                <!-- Screen Container with Aspect Ratio -->
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner group">
+                    <iframe 
+                        class="w-full h-full"
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W8cOVE9OUuA?si=DF5FNKiLyGdbYlNB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                        title="شرح اساسيات التمريض" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16" id="cardsGrid">
+            
+            <!-- Card 1: Vital Signs -->
+            <div onclick="openModal('vitals')" class="glass-card rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 hover:border-sky-500 dark:hover:border-sky-500 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <span class="text-xs font-bold text-rose-500 uppercase tracking-wider">التقييم الفسيولوجي</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-2">العلامات الحيوية (Vital Signs)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">
+                        المؤشرات الأساسية لوظائف الجسم الحيوية تشمل درجة الحرارة، النبض، التنفس، وضغط الدم.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sky-600 dark:text-sky-400 font-bold text-sm">
+                    <span>عرض التفاصيل والأرقام</span>
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+
+            <!-- Card 2: Patient Assessment -->
+            <div onclick="openModal('assessment')" class="glass-card rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 hover:border-sky-500 dark:hover:border-sky-500 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <span class="text-xs font-bold text-sky-500 uppercase tracking-wider">العملية التمريضية</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-2">تقييم المريض (Patient Assessment)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">
+                        جمع وتحليل البيانات الشاملة للمريض صحياً ونفسياً واجتماعياً لتحديد الاحتياجات العلاجية.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sky-600 dark:text-sky-400 font-bold text-sm">
+                    <span>عرض التفاصيل والأرقام</span>
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+
+            <!-- Card 3: Infection Control -->
+            <div onclick="openModal('infection')" class="glass-card rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 hover:border-sky-500 dark:hover:border-sky-500 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-virus"></i>
+                    </div>
+                    <span class="text-xs font-bold text-amber-500 uppercase tracking-wider">السلامة المهنية</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-2">مكافحة العدوى (Infection Control)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">
+                        السياسات والإجراءات الوقائية لمنع انتقال الميكروبات وحماية المرضى والطاقم الطبي.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sky-600 dark:text-sky-400 font-bold text-sm">
+                    <span>عرض التفاصيل والأرقام</span>
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+
+            <!-- Card 4: Wound Care -->
+            <div onclick="openModal('wound')" class="glass-card rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 hover:border-sky-500 dark:hover:border-sky-500 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-hand-holding-medical"></i>
+                    </div>
+                    <span class="text-xs font-bold text-teal-500 uppercase tracking-wider">الرعاية العلاجية</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-2">العناية بالجروح (Wound Care)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">
+                        تقييم وتطهير وتغيير الضمادات الجراحية لتسريع التئام الأنسجة ومنع التلوث.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sky-600 dark:text-sky-400 font-bold text-sm">
+                    <span>عرض التفاصيل والأرقام</span>
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+
+            <!-- Card 5: Medication Administration -->
+            <div onclick="openModal('medication')" class="glass-card rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 hover:border-sky-500 dark:hover:border-sky-500 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+                    <span class="text-xs font-bold text-indigo-500 uppercase tracking-wider">العلاج الدوائي</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-2">إدارة الأدوية (Medication Administration)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">
+                        تطبيق قواعد السلامة الدوائية "الصحوات الخمس" لإعطاء العقاقير بالطرق السليمة.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sky-600 dark:text-sky-400 font-bold text-sm">
+                    <span>عرض التفاصيل والأرقام</span>
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+
+            <!-- Card 6: Patient Hygiene & Comfort -->
+            <div onclick="openModal('hygiene')" class="glass-card rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 hover:border-sky-500 dark:hover:border-sky-500 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bed-pulse"></i>
+                    </div>
+                    <span class="text-xs font-bold text-purple-500 uppercase tracking-wider">الراحة والنظافة</span>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-2">النظافة الشخصية والراحة (Hygiene & Comfort)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">
+                        العناية بالنظافة العامة للمريض الطريح الفراش ومنع تقرحات الفراش (Pressure Ulcers).
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sky-600 dark:text-sky-400 font-bold text-sm">
+                    <span>عرض التفاصيل والأرقام</span>
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal Dialog Popup -->
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div id="modalContainer" class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-800 transform scale-95 transition-transform duration-300">
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-10">
+                <div class="flex items-center gap-3">
+                    <div id="modalIconBox" class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-xl">
+                        <i id="modalIcon" class="fa-solid fa-notes-medical"></i>
+                    </div>
+                    <div>
+                        <span id="modalCategory" class="text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">فئة المساق</span>
+                        <h3 id="modalTitle" class="text-lg font-black text-slate-900 dark:text-white">عنوان الموضوع</h3>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-6 sm:p-8 space-y-6">
+                <!-- Definition Section -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">التعريف المفصل</h4>
+                    <p id="modalDefinition" class="text-slate-700 dark:text-slate-300 text-base leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+                        <!-- Filled by JS -->
+                    </p>
+                </div>
+
+                <!-- Elements / Key Points -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">العناصر الرئيسية</h4>
+                    <ul id="modalElements" class="space-y-2.5">
+                        <!-- Filled by JS -->
+                    </ul>
+                </div>
+
+                <!-- Numbers / Normal Values (if applicable) -->
+                <div id="modalValuesContainer" class="hidden">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">الأرقام والمعدلات الطبيعية</h4>
+                    <div id="modalValuesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+
+                <!-- Practical Example -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">مثال عملي / تطبيقي</h4>
+                    <div class="bg-sky-50 dark:bg-sky-950/40 border border-sky-100 dark:border-sky-900/50 p-4 rounded-xl">
+                        <p id="modalExample" class="text-sky-900 dark:text-sky-200 text-sm leading-relaxed">
+                            <!-- Filled by JS -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 dark:bg-slate-900/50 px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeModal()" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-6 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer with Developer Credits -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+            <div>
+                <p class="text-sm font-bold text-slate-700 dark:text-slate-300">
+                    جميع الحقوق محفوظة © 2026 - مساق أساسيات التمريض
+                </p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    بوابة تعليمية متقدمة لطلاب كليات التمريض والعلوم الصحية
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <a href="https://wa.me/9707483258" target="_blank" class="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-100 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>+9707483258</span>
+                </a>
+                <div class="text-sm font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700">
+                    تصميم وتطوير <span class="text-sky-600 dark:text-sky-400 font-extrabold">م.محمد ابو خليل</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Nursing Course Detailed Data Base
+        const nursingData = {
+            vitals: {
+                category: "التقييم الفسيولوجي",
+                title: "العلامات الحيوية (Vital Signs)",
+                icon: "fa-heart-pulse",
+                iconColor: "text-rose-500",
+                iconBg: "bg-rose-500/10",
+                definition: "العلامات الحيوية هي مؤشرات أساسية تعكس مدى كفاءة وظائف أعضاء الجسم الحيوية والاستقرار الفسيولوجي للمريض، وتعتبر الخط الدفاعي الأول لاكتشاف أي تدهور صحي مفاجئ.",
+                elements: [
+                    "درجة حرارة الجسم (Body Temperature)",
+                    "معدل نبضات القلب (Pulse / Heart Rate)",
+                    "معدل التنفس (Respiratory Rate)",
+                    "ضغط الدم (Blood Pressure)",
+                    "مستوى تشبع الأكسجين في الدم (Oxygen Saturation - SpO2)"
+                ],
+                hasValues: true,
+                values: [
+                    { label: "درجة الحرارة الطبيعية", val: "36.5°C - 37.5°C" },
+                    { label: "نبض القلب (البالغين)", val: "60 - 100 نبضة / دقيقة" },
+                    { label: "معدل التنفس الطبيعي", val: "12 - 20 نفس / دقيقة" },
+                    { label: "ضغط الدم الطبيعي", val: "120/80 ملم زئبق" },
+                    { label: "تشبع الأكسجين الطبيعي", val: "95% - 100%" }
+                ],
+                example: "مثال عملي: قياس العلامات الحيوية لمريض طارئ في قسم الطوارئ؛ فإذا كان ضغط الدم (140/90) والنبض (110)، فهذا يدل على احتمال وجود حالة ارتفاع ضغط أو توتر/ألم، مما يستوجب إبلاغ الطبيب المختصر فوراً."
+            },
+            assessment: {
+                category: "العملية التمريضية",
+                title: "تقييم المريض (Patient Assessment)",
+                icon: "fa-stethoscope",
+                iconColor: "text-sky-500",
+                iconBg: "bg-sky-500/10",
+                definition: "هو الخطوة الأولى والأساسية في العملية التمريضية (Nursing Process)، ويتم فيه جمع منظم ومستمر للبيانات الصحية المتعلقة بالمريض بغرض تحديد المشاكل الصحية ووضع خطة الرعاية الملائمة.",
+                elements: [
+                    "جمع البيانات الشخصية والتاريخ المرضي (Subjective Data - الأعراض التي يشكو منها المريض).",
+                    "الفحص السريري المباشر والقياسات الفيزيائية (Objective Data - العلامات والعينات).",
+                    "تحليل وتفسير البيانات المجمعة لتشخيص الحالة.",
+                    "توثيق الملاحظات الطبية بدقة في ملف المريض."
+                ],
+                hasValues: false,
+                example: "مثال عملي: دخول مريض يعاني من ضيق تنفس؛ يقوم الممرض بسؤاله عن متى بدأ الشعور بالضيق (بيانات ذاتية) وفحص صدره وسماعة الرئة ونسبة الأكسجين (بيانات موضوعية)."
+            },
+            infection: {
+                category: "السلامة المهنية",
+                title: "مكافحة العدوى (Infection Control)",
+                icon: "fa-shield-virus",
+                iconColor: "text-amber-500",
+                iconBg: "bg-amber-500/10",
+                definition: "مجموعة الإجراءات والسياسات العلمية المتبعة داخل المؤسسات الصحية للحد من انتقال الميكروبات ومسببات الأمراض بين المرضى، والزوار، والطاقم الطبي.",
+                elements: [
+                    "الاحتياطات القياسية والنظافة الشخصية لليدين (Hand Hygiene).",
+                    "استخدام معدات الوقاية الشخصية (PPE) مثل الكمامات، القفازات، والواقيات.",
+                    "التعقيم والتطهير المستمر للسطوح والأدوات الطبية.",
+                    "التعامل السليم مع النفايات الطبية والحادة (Sharps Disposal)."
+                ],
+                hasValues: false,
+                example: "مثال عملي: غسل اليدين بالطريقة الطبية الصحيحة لمدة لا تقل عن 40-60 ثانية قبل وبعد فحص كل مريض لمنع انتقال العدوى التبادلية (Cross-contamination)."
+            },
+            wound: {
+                category: "الرعاية العلاجية",
+                title: "العناية بالجروح (Wound Care)",
+                icon: "fa-hand-holding-medical",
+                iconColor: "text-teal-500",
+                iconBg: "bg-teal-500/10",
+                definition: "التقييم المنتظم والعناية السريرية بالجروح الجراحية أو التقرحات لضمان التئامها بشكل سليم ومنع حدوث التلوث البكتيري أو المضاعفات.",
+                elements: [
+                    "تقييم حجم وعمق الجرح وملاحظة إفرازاته (لونها ورائحتها).",
+                    "تنظيف الجرح بمحاليل معقمة مطابقة للمعايير الطبية (مثل Normal Saline).",
+                    "تغيير الضمادات وفقاً للتقنية المعقمة (Aseptic Technique).",
+                    "مراقبة علامات الالتهاب مثل الاحمرار، التورم، أو ارتفاع الحرارة موضعياً."
+                ],
+                hasValues: false,
+                example: "مثال عملي: تغيير ضماد جرح عملية قيصرية بملابس ومعدات معقمة، مع مطهر طبي ومراقبة التئام الغرز الجراحية دون وجود إفرازات صديدية."
+            },
+            medication: {
+                category: "العلاج الدوائي",
+                title: "إدارة الأدوية (Medication Administration)",
+                icon: "fa-pills",
+                iconColor: "text-indigo-500",
+                iconBg: "bg-indigo-500/10",
+                definition: "المسؤولية التمريضية الحرجة لإعطاء الدواء الصحيح للمريض الصحيح وبالجرعة والطريقة والوقت الصحيح مع التوثيق السليم.",
+                elements: [
+                    "قاعدة الحقوق الخمسة لإعطاء الدواء (The 5 Rights).",
+                    "التحقق من حساسية المريض للأدوية قبل إعطائها.",
+                    "حساب الجرعات الدوائية بدقة متناهية (خاصة للأطفال والعناية الحثيثة).",
+                    "مراقبة استجابة المريض للدواء والآثار الجانبية المحتملة."
+                ],
+                hasValues: true,
+                values: [
+                    { label: "المريض الصحيح (Right Patient)", val: "مطابقة السوار الطبي" },
+                    { label: "الدواء الصحيح (Right Drug)", val: "مراجعة أمر الطبيب" },
+                    { label: "الجرعة الصحيحة (Right Dose)", val: "حساب دقيق ومزدوج" },
+                    { label: "طريقة الإعطاء (Right Route)", val: "فموي، وريدي، عضلي، إلخ" },
+                    { label: "الوقت الصحيح (Right Time)", val: "الالتزام بمواعيد الجرعات" }
+                ],
+                example: "مثال عملي: إعطاء حقنة الأنسولين لمريض سكري بعد التأكد من اسم المريض عبر السوار الطبي، وفحص سكر الدم (Blood Glucose) قبل الحقن مباشرة."
+            },
+            hygiene: {
+                category: "الراحة والنظافة",
+                title: "النظافة الشخصية والراحة (Hygiene & Comfort)",
+                icon: "fa-bed-pulse",
+                iconColor: "text-purple-500",
+                iconBg: "bg-purple-500/10",
+                definition: "تقديم الرعاية اليومية للحفاظ على نظافة بشرة وجسم المريض، وتوفير بيئة مريحة تقلل التوتر وتمنع تكون تقرحات الفراش.",
+                elements: [
+                    "حمام السرير (Bed Bath) للمرضى غير القادرين على الحركة.",
+                    "العناية بنظافة الفم والأسنان والشعر.",
+                    "تغيير وضعية المريض كل ساعتين لمنع تقرحات الفراش (Pressure Ulcers).",
+                    "ترتيب الفراش الطبي وتوفير بيئة هادئة ومريحة."
+                ],
+                hasValues: false,
+                example: "مثال عملي: تقليب مريض غيبوبة مقعد في السرير كل ساعتين بانتظام، مع وضع الوسائد الطبية لحماية النقاط العظمية من الاحتكاك والتَقَرُّح."
+            }
+        };
+
+        // Modal Functionality
+        function openModal(key) {
+            const data = nursingData[key];
+            if (!data) return;
+
+            document.getElementById('modalCategory').innerText = data.category;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDefinition').innerText = data.definition;
+            document.getElementById('modalExample').innerText = data.example;
+
+            // Set Icon
+            const iconBox = document.getElementById('modalIconBox');
+            iconBox.className = `w-10 h-10 rounded-xl ${data.iconBg} ${data.iconColor} flex items-center justify-center text-xl`;
+            document.getElementById('modalIcon').className = `fa-solid ${data.icon}`;
+
+            // Elements List
+            const elementsList = document.getElementById('modalElements');
+            elementsList.innerHTML = '';
+            data.elements.forEach(el => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-300';
+                li.innerHTML = `<i class="fa-solid fa-check text-sky-500 mt-1 flex-shrink-0"></i><span>${el}</span>`;
+                elementsList.appendChild(li);
+            });
+
+            // Normal Values / Numbers
+            const valuesContainer = document.getElementById('modalValuesContainer');
+            const valuesGrid = document.getElementById('modalValuesGrid');
+            if (data.hasValues) {
+                valuesContainer.classList.remove('hidden');
+                valuesGrid.innerHTML = '';
+                data.values.forEach(v => {
+                    const div = document.createElement('div');
+                    div.className = 'bg-slate-50 dark:bg-slate-800/80 p-3 rounded-xl border border-slate-100 dark:border-slate-800 flex flex-col';
+                    div.innerHTML = `<span class="text-xs text-slate-400 font-semibold mb-1">${v.label}</span><span class="text-sm font-black text-sky-600 dark:text-sky-400">${v.val}</span>`;
+                    valuesGrid.appendChild(div);
+                });
+            } else {
+                valuesContainer.classList.add('hidden');
+            }
+
+            // Show Modal with Animation
+            const modal = document.getElementById('detailModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.add('opacity-0');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal on background click
+        document.getElementById('detailModal').addEventListener('click', (e) => {
+            if (e.target.id === 'detailModal') {
+                closeModal();
+            }
+        });
+
+        // Dark Mode Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        // Check saved preference or system preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg';
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-moon text-lg';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            }
+        });
+    </script>
+</body>
+</html>

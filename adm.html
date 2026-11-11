@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدليل الميداني الشامل لرعاية المريض - مراحل المستشفى والعمليات</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        clinical: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            750: '#0369a1',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        .glass-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-box {
+            background: rgba(30, 41, 59, 0.95);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+        ::-webkit-scrollbar-thumb { background: #0284c7; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/30">
+                    <i class="fa-solid fa-hospital-user text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">الدليل الميداني لرعاية المريض</h1>
+                    <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold">Clinical Inpatient & Perioperative Care Pathway</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="https://wa.me/9707483258" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/20 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>تواصل مع المطور</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+        <!-- Hero Intro -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="inline-block bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-sky-200 dark:border-sky-800">
+                البروتوكول السريري الميداني المتكامل
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mb-4 leading-tight">
+                مسار رعاية المريض: من دخول المستشفى حتى المغادرة
+            </h2>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+                مرجع ميداني منظم يغطي استقبال المرضى، التسكين بالأقسام، مراحل العمليات الجراحية (قبل، أثناء، بعد)، وإجراءات الخروج الآمن.
+            </p>
+        </div>
+
+        <!-- Filter Navigation Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-10" id="filterContainer">
+            <button onclick="filterStages('all')" class="stage-btn active bg-sky-600 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md">جميع المراحل</button>
+            <button onclick="filterStages('admission')" class="stage-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-xl text-xs font-bold transition-all">1. دخول واستقبال المريض</button>
+            <button onclick="filterStages('ward')" class="stage-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-xl text-xs font-bold transition-all">2. الدخول للأقسام وتسكين المريض</button>
+            <button onclick="filterStages('preop')" class="stage-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-xl text-xs font-bold transition-all">3. ما قبل العملية (Pre-op)</button>
+            <button onclick="filterStages('intraop')" class="stage-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-xl text-xs font-bold transition-all">4. أثناء العملية (Intra-op)</button>
+            <button onclick="filterStages('postop')" class="stage-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-xl text-xs font-bold transition-all">5. بعد العملية (Post-op)</button>
+            <button onclick="filterStages('discharge')" class="stage-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-xl text-xs font-bold transition-all">6. خروج المريض (Discharge)</button>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16" id="pathwayGrid">
+            <!-- Dynamic Content -->
+        </div>
+
+    </main>
+
+    <!-- Detailed Modal View -->
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div id="modalContainer" class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-800 transform scale-95 transition-transform duration-300">
+            
+            <div class="sticky top-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-10">
+                <div class="flex items-center gap-3">
+                    <div id="modalIconBox" class="w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i id="modalIcon" class="fa-solid fa-notes-medical"></i>
+                    </div>
+                    <div>
+                        <span id="modalStageName" class="text-xs font-bold uppercase tracking-wider">المرحلة</span>
+                        <h3 id="modalTitle" class="text-lg font-black text-slate-900 dark:text-white leading-tight">عنوان البروتوكول</h3>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-6">
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">الهدف والسياسة السريرية</h4>
+                    <div class="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-sky-600 dark:text-sky-400 font-extrabold text-sm">
+                        <p id="modalObjective"></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">الخطوات الإجرائية التفصيلية في الميدان</h4>
+                    <div class="bg-sky-50 dark:bg-sky-950/40 border border-sky-100 dark:border-sky-900/50 p-4 rounded-xl space-y-2">
+                        <p id="modalSteps" class="text-slate-800 dark:text-slate-200 text-sm leading-relaxed whitespace-pre-line font-medium"></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-amber-500 uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i> نقاط السلامة والملاحظات التمريضية الحرجة
+                    </h4>
+                    <ul id="modalWarnings" class="space-y-2 text-sm text-slate-700 dark:text-slate-300 bg-amber-50 dark:bg-amber-950/30 p-4 rounded-xl border border-amber-200 dark:border-amber-800/50">
+                        <!-- Filled by JS -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 dark:bg-slate-900/50 px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeModal()" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-6 py-2.5 rounded-xl font-bold text-sm transition-all">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+            <div>
+                <p class="text-sm font-bold text-slate-700 dark:text-slate-300">جميع الحقوق محفوظة © 2026 - بوابة التمريض التعليمية</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">الدليل الميداني الشامل لرعاية المريض في المنشآت الصحية</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <a href="https://wa.me/9707483258" target="_blank" class="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-100 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>+9707483258</span>
+                </a>
+                <div class="text-sm font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700">
+                    تصميم وتطوير <span class="text-sky-600 dark:text-sky-400 font-extrabold">م.محمد ابو خليل</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Engine -->
+    <script>
+        const carePathwayData = [
+            // 1. Admission
+            {
+                id: "adm-1",
+                stage: "admission",
+                stageName: "دخول واستقبال المريض",
+                title: "بروتوكول استقبال ودخول المريض للمستشفى",
+                icon: "fa-right-to-bracket",
+                color: "sky",
+                objective: "توفير استقبال آمن ومريح للمريض، توثيق الهوية والبيانات، وتخفيف القلق والتوتر.",
+                steps: "1. الترحيب بالمريض ومرافقه باحترافية واحترام.\n2. التحقق من الهوية الرسمية وربط سوار المعصم الطبي (ID Band) بدقة.\n3. فتح الملف الطبي الإلكتروني أو الورقي وتوثيق الشكاية الرئيسية.\n4. قياس العلامات الحيوية الأولية (BP, HR, RR, Temp, SpO2).\n5. تقييم الحالة العامة والتاريخ المرضي والأدوية السابقة.",
+                warnings: [
+                    "تأكد تماماً من مطابقة بيانات سوار المعصم مع الملف الطبي لمنع أي خطأ تعريفي.",
+                    "التبليغ الفوري عن أي علامات حيوية حرجة للطبيب المقيم للاستجابة السريعة."
+                ]
+            },
+            // 2. Ward Transfer
+            {
+                id: "ward-1",
+                stage: "ward",
+                stageName: "الدخول للأقسام وتسكين المريض",
+                title: "آلية تسكين المريض واستلامه في القسم الداخلي (Inpatient Ward)",
+                icon: "fa-bed",
+                color: "indigo",
+                objective: "ضمان انتقال سلس للمريض من الطوارئ أو الاستقبال إلى القسم المختص مع استكمال منظومة الرعاية.",
+                steps: "1. تجهيز السرير ونظافة الوحدة وتوفير مستلزمات الراحة.\n2. استقبال تقرير الحالة (Handover) من ممرض القسم المحول منه.\n3. تعريف المريض بنظام القسم، مواعيد الزيارة، وأزرار استدعاء التمريض.\n4. إجراء تقييم مخاطر السقوط (Fall Risk Assessment) وتقرحات الضغظ.\n5. تثبيت خط المحاليل الوريدية والتأكد من خطة العلاج المكتوبة.",
+                warnings: [
+                    "رفع حواجز السرير الجانبية بانتظام لجميع المرضى كبار السن أو فاقدي الوعي.",
+                    "تسليم الشيفت شفهياً وكتابياً بدقة لضمان استمرارية الخطة العلاجية."
+                ]
+            },
+            // 3. Pre-Op
+            {
+                id: "pre-1",
+                stage: "preop",
+                stageName: "ما قبل العملية (Pre-op)",
+                title: "التجهيز الجراحي الشامل قبل الدخول إلى غرفة العمليات",
+                icon: "fa-clipboard-check",
+                color: "teal",
+                objective: "تجهيز المريض جسدياً ونفسياً للعملية، التأكد من جاهزية الفحوصات، ومنع حدوث مضاعفات تخديرية.",
+                steps: "1. التأكد من توقيع موافقة العملية المعتنمة (Informed Consent) من المريض أو ولي أمره.\n2. تطبيق نظام الصيام (NPO) لمنع الارتجاع والشفط الرئوي أثناء التخدير.\n3. إزالة الحلي، الإكسسوارات، العدسات اللاصقة، والأسنان الصناعية.\n4. إعطاء الأدوية المسبقة للعمليات (Pre-meds) حسب أمر طبيب التخدير.\n5. التحقق من نتائج الفحوصات المخبرية (CBC, Coagulation) وتخطيط القلب (ECG).",
+                warnings: [
+                    "تخطيط وتحديد مكان العملية بدقة على جسد المريض بحضور الجراح (Site Marking).",
+                    "التأكد من تفريغ المثانة للمريض قبل نقله لغرفة العمليات."
+                ]
+            },
+            // 4. Intra-Op
+            {
+                id: "intra-1",
+                stage: "intraop",
+                stageName: "أثناء العملية (Intra-op)",
+                title: "إدارة رعاية المريض داخل غرفة العمليات (OR)",
+                icon: "fa-scalpel",
+                color: "purple",
+                objective: "الحفاظ على سلامة المريض القصيرة وطويلة المدى طوال فترة التخدير والجراحة.",
+                steps: "1. مساعدة طبيب التخدير في مراقبة العلامات الحيوية المستمرة (ECG, SpO2, NIBP).\n2. تأمين وضعية المريض على طاولة العمليات لحماية الأعصاب والأوعية الدموية من التلف.\n3. الحفاظ الصارم على بيئة التعقيم (Sterile Field) والمراقبة المستمرة للأدوات.\n4. التعاون في إجراء العد الدقيق للشاش والأدوات الجراحية (Surgical Count).\n5. توثيق كمية السوائل المعطاة والدم المنقول طوال الجراحة.",
+                warnings: [
+                    "الانتباه لدرجة حرارة المريض لمنع حدوث انخفاض حرارة الجسم (Hypothermia).",
+                    "التبليغ الفوري عن أي هبوط مفاجئ في الضغط أو اضطراب بنبضات القلب."
+                ]
+            },
+            // 5. Post-Op
+            {
+                id: "post-1",
+                stage: "postop",
+                stageName: "بعد العملية (Post-op)",
+                title: "رعاية الإفاقة والمتابعة الحثيثة بعد العمليات الجراحية (PACU)",
+                icon: "fa-bed-pulse",
+                color: "rose",
+                objective: "مراقبة استقرار المريض بعد التخدير، تقييم وعيه، السيطرة على الألم، والكشف المبكر عن النزيف.",
+                steps: "1. تقييم مجرى الهواء (Airway) والتنفس وإعطاء الأكسجين بانتظام.\n2. قياس العلامات الحيوية كل 15 دقيقة خلال الساعة الأولى في الإفاقة.\n3. مراقبة جرح العملية ومقدار النزيف في الضمادات أو الأنابيب التصريفية (Drains).\n4. تقييم درجة الألم وإعطاء المسكنات الموصوفة بدقة.\n5. التأكد من استعادة الوعي الكامل ونقل المريض للقسم الداخلي بحالة مستقرة.",
+                warnings: [
+                    "مراقبة علامات النزيف الداخلي أو الهبوط الحاد في الضغط الشرياني.",
+                    "التأكد من كفاية إخراج البول وعمل الكلى بعد التخدير."
+                ]
+            },
+            // 6. Discharge
+            {
+                id: "dis-1",
+                stage: "discharge",
+                stageName: "خروج المريض (Discharge)",
+                title: "بروتوكول خروج المريض الآمن وتسكين التعليمات المنزلية",
+                icon: "fa-house-chimney-medical",
+                color: "emerald",
+                objective: "ضمان خروج آمن للمريض مع فهم كامل للخطة العلاجية والأدوية ومواعيد المراجعة.",
+                steps: "1. التأكد من استقرار الحالة الصحية واستيفاء معايير الخروج الطبي.\n2. مراجعة أدوية الخروج وشرح طريقة تناولها وجرعاتها للمريض ومرافقه.\n3. إعطاء التعليمات المتعلقة بالعناية بالجرح، الحمية الغذائية، والنشاط المسموح.\n4. تسليم التقارير الطبية، الشهادات، ومواعيد العيادات الخارجية القادمة.\n5. توديع المريض والتأكد من مغادرته بوسيلة نقل مريحة وآمنة.",
+                warnings: [
+                    "التنبيه على العلامات الخطرة التي تستوجب العودة الفورية للطوارئ (مثل النزيف أو الحرارة العالية).",
+                    "التأكد من عدم نسيان المريض لأي أغراض شخصية بالمستشفى."
+                ]
+            }
+        ];
+
+        const colorMap = {
+            sky: { bg: "bg-sky-500/10", text: "text-sky-500", border: "hover:border-sky-500" },
+            indigo: { bg: "bg-indigo-500/10", text: "text-indigo-500", border: "hover:border-indigo-500" },
+            teal: { bg: "bg-teal-500/10", text: "text-teal-500", border: "hover:border-teal-500" },
+            purple: { bg: "bg-purple-500/10", text: "text-purple-500", border: "hover:border-purple-500" },
+            rose: { bg: "bg-rose-500/10", text: "text-rose-500", border: "hover:border-rose-500" },
+            emerald: { bg: "bg-emerald-500/10", text: "text-emerald-500", border: "hover:border-emerald-500" }
+        };
+
+        function renderCards(items) {
+            const grid = document.getElementById('pathwayGrid');
+            grid.innerHTML = '';
+
+            items.forEach(item => {
+                const style = colorMap[item.color] || colorMap.sky;
+                const card = document.createElement('div');
+                card.onclick = () => openModal(item.id);
+                card.className = `glass-box rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 ${style.border} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between h-full`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl ${style.bg} ${style.text} flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid ${item.icon}"></i>
+                            </div>
+                            <span class="text-[10px] font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                                ${item.stageName}
+                            </span>
+                        </div>
+
+                        <h3 class="text-base font-extrabold text-slate-900 dark:text-white leading-snug mb-2 group-hover:text-sky-500 transition-colors">
+                            ${item.title}
+                        </h3>
+
+                        <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4 line-clamp-3">
+                            ${item.objective}
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sky-600 dark:text-sky-400 font-bold text-xs">
+                        <span>عرض الخطوات وإرشادات السلامة</span>
+                        <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function filterStages(stage) {
+            document.querySelectorAll('.stage-btn').forEach(btn => {
+                btn.className = 'stage-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-xl text-xs font-bold transition-all';
+            });
+            event.currentTarget.className = 'stage-btn active bg-sky-600 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md';
+
+            const filtered = stage === 'all' ? carePathwayData : carePathwayData.filter(d => d.stage === stage);
+            renderCards(filtered);
+        }
+
+        function openModal(id) {
+            const item = carePathwayData.find(d => d.id === id);
+            if (!item) return;
+
+            const style = colorMap[item.color] || colorMap.sky;
+
+            document.getElementById('modalStageName').innerText = item.stageName;
+            document.getElementById('modalStageName').className = `text-xs font-bold ${style.text} uppercase tracking-wider`;
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalObjective').innerText = item.objective;
+            document.getElementById('modalSteps').innerText = item.steps;
+
+            const warningsList = document.getElementById('modalWarnings');
+            warningsList.innerHTML = '';
+            item.warnings.forEach(w => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-2';
+                li.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1 flex-shrink-0"></i><span>${w}</span>`;
+                warningsList.appendChild(li);
+            });
+
+            const iconBox = document.getElementById('modalIconBox');
+            iconBox.className = `w-12 h-12 rounded-xl ${style.bg} ${style.text} flex items-center justify-center text-xl shrink-0`;
+            document.getElementById('modalIcon').className = `fa-solid ${item.icon}`;
+
+            const modal = document.getElementById('detailModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.add('opacity-0');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        document.getElementById('detailModal').addEventListener('click', (e) => {
+            if (e.target.id === 'detailModal') closeModal();
+        });
+
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg';
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-moon text-lg';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            }
+        });
+
+        renderCards(carePathwayData);
+    </script>
+</body>
+</html>

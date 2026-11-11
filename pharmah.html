@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الأدوية والمحاليل الوريدية الطارئة والسريرية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        medical: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        clinical: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#38bdf8'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.9);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/30">
+                    <i class="fa-solid fa-pills text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">دليل الأدوية والمحاليل الطارئة</h1>
+                    <p class="text-xs text-sky-600 dark:text-sky-400 font-semibold">Emergency & Clinical Pharmacology Portal</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="https://wa.me/9707483258" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/20 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>تواصل مع المطور</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Body -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+        <!-- Hero Section -->
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="inline-block bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-sky-200 dark:border-sky-800">
+                مرجع الطوارئ والأقسام السريرية
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mb-4 leading-tight">
+                الموسوعة التمريضية لأدوية ومحاليل المستشفيات
+            </h2>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+                استكشف أكثر من 50 عقاراً ومحلولاً وريدياً مع دواعي الاستعمال، أدوية المعدة، خافضات الحرارة، والمسكنات.
+            </p>
+        </div>
+
+        <!-- Search & Filters Container -->
+        <div class="mb-10 space-y-5">
+            <!-- Search Bar -->
+            <div class="relative max-w-2xl mx-auto">
+                <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                <input type="text" id="searchInput" placeholder="ابحث باسم الدواء (العلمي/التجاري)، دواعي الاستعمال..." class="w-full pl-4 pr-12 py-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 shadow-sm text-sm font-semibold transition-all">
+            </div>
+
+            <!-- Categories Grid Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 max-w-5xl mx-auto" id="filterContainer">
+                <button onclick="filterCategory('all')" class="filter-btn active bg-sky-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md">الكل (50+)</button>
+                <button onclick="filterCategory('stomach')" class="filter-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-xl text-xs font-bold transition-all">أدوية المعدة والجهاز الهضمي</button>
+                <button onclick="filterCategory('analgesics')" class="filter-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-xl text-xs font-bold transition-all">المسكنات وخافضات الحرارة</button>
+                <button onclick="filterCategory('fluids')" class="filter-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-xl text-xs font-bold transition-all">المحاليل الوريدية</button>
+                <button onclick="filterCategory('resuscitation')" class="filter-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-xl text-xs font-bold transition-all">أدوية الإنعاش والإنقاذ</button>
+                <button onclick="filterCategory('cardiac')" class="filter-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-xl text-xs font-bold transition-all">القلب والأوعية الدموية</button>
+                <button onclick="filterCategory('antibiotics')" class="filter-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-xl text-xs font-bold transition-all">المضادات الحيوية</button>
+                <button onclick="filterCategory('respiratory')" class="filter-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-xl text-xs font-bold transition-all">الجهاز التنفسي</button>
+            </div>
+        </div>
+
+        <!-- Uniform Equal Grid for Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16" id="drugsGrid">
+            <!-- Dynamic Content Injected by JS -->
+        </div>
+
+    </main>
+
+    <!-- Modal Popup for Drug Details -->
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div id="modalContainer" class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-800 transform scale-95 transition-transform duration-300">
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-10">
+                <div class="flex items-center gap-3">
+                    <div id="modalIconBox" class="w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i id="modalIcon" class="fa-solid fa-capsules"></i>
+                    </div>
+                    <div>
+                        <span id="modalCategory" class="text-xs font-bold uppercase tracking-wider">التصنيف</span>
+                        <h3 id="modalTitle" class="text-lg font-black text-slate-900 dark:text-white leading-tight">اسم العلاج</h3>
+                        <p id="modalTradeName" class="text-xs text-slate-500 font-semibold"></p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-6 sm:p-8 space-y-6">
+                <!-- Usage Section -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">دواعي الاستعمال والاستخدام</h4>
+                    <p id="modalUsage" class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800 font-medium"></p>
+                </div>
+
+                <!-- Dose Section -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">الجرعة وطريقة الإعطاء</h4>
+                    <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/50 p-4 rounded-xl text-amber-900 dark:text-amber-300 text-sm font-semibold">
+                        <p id="modalDose"></p>
+                    </div>
+                </div>
+
+                <!-- Precautions / Side Effects -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">موانع الاستعمال والاحتياطات التمريضية</h4>
+                    <p id="modalPrecautions" class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed bg-rose-50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/40 p-4 rounded-xl"></p>
+                </div>
+
+                <!-- Clinical Example -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">سيناريو تطبيقي سريري (الميدان)</h4>
+                    <div class="bg-sky-50 dark:bg-sky-950/40 border border-sky-100 dark:border-sky-900/50 p-4 rounded-xl">
+                        <p id="modalExample" class="text-sky-900 dark:text-sky-200 text-sm leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 dark:bg-slate-900/50 px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeModal()" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-6 py-2.5 rounded-xl font-bold text-sm transition-all">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+            <div>
+                <p class="text-sm font-bold text-slate-700 dark:text-slate-300">جميع الحقوق محفوظة © 2026 - دليل التمريض الطبي</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">مرجع سريري متكامل لممرضي وأطباء أقسام الطوارئ والعناية المركزة</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <a href="https://wa.me/9707483258" target="_blank" class="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-100 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>+9707483258</span>
+                </a>
+                <div class="text-sm font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700">
+                    تصميم وتطوير <span class="text-sky-600 dark:text-sky-400 font-extrabold">م.محمد ابو خليل</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        const drugsData = [
+            // --- Gastrointestinal & Stomach Category (أدوية المعدة والجهاز الهضمي) ---
+            { id: "stm-1", category: "stomach", categoryName: "أدوية المعدة والجهاز الهضمي", name: "Omeprazole IV", trade: "لوسيك / أومبريزول (Losec)", icon: "fa-capsules", color: "amber", usage: "علاج قرحة المعدة الحادة، نزيف الجهاز الهضمي العلوي، وتثبيط إفراز الحمض.", dose: "40mg IV بطيء تنقيط مع سلاين أو دكستروز مرة أو مرتين يومياً.", precautions: "تجنب الإعطاء السريع لتفادي الآثار الجانبية، ومراقبة علامات النزيف المعوي.", example: "مريض وصل بالطوارئ يعاني من استفراغ دموي بسبب قرحة حادة، تم تركيب لوسيك 40mg وريدي." },
+            { id: "stm-2", category: "stomach", categoryName: "أدوية المعدة والجهاز الهضمي", name: "Pantoprazole IV", trade: "كونترولوك / بنتوبريزول (Controloc)", icon: "fa-vial", color: "orange", usage: "حماية المعدة من القرح النزفية الناتجة عن التوتر بالمرضى المقيمين بالعناية.", dose: "40mg - 80mg IV ينقط وريدياً.", precautions: "يراعى في حالات المرضى الكبار في السن ومراقبة مستوى المغنيسيوم بالدم.", example: "مريض بالعناية المركزة يُحقن كونترولوك 40mg يومياً للوقاية من قرح التوتر." },
+            { id: "stm-3", category: "stomach", categoryName: "أدوية المعدة والجهاز الهضمي", name: "Metoclopramide", trade: "بريمبيران (Primperan)", icon: "fa-face-frown", color: "sky", usage: "علاج الغثيان والقيء وتسرع تفريغ المعدة للمرضى الصائمين أو الحالات الطارئة.", dose: "10mg IV / IM بطيء جداً على مدار دقيقة إلى دقيقتين.", precautions: "الإعطاء السريع جداً يسبب هياج وحركات غير إرادية (Extrapyramidal symptoms).", example: "مريض بطوارئ الجراحة يتقيأ باستمرار أُعطي 10mg بريمبيران وريدي بطيء." },
+            { id: "stm-4", category: "stomach", categoryName: "أدوية المعدة والجهاز الهضمي", name: "Ondansetron", trade: "زوفران (Zofran)", icon: "fa-shield-halved", color: "teal", usage: "منع والسيطرة على القيء الشديد خاصة بعد العمليات الجراحية والعلاج الكيميائي.", dose: "4mg - 8mg IV بطيء على مدار 2 - 5 دقائق.", precautions: "قد يسبب صداع بسيط وإمساك، ومراقبة مخطط القلب QT interval عند الجرعات العالية.", example: "مريض بعد عملية استئصال مرارة يعاني من غثيان حاد تم إعطاؤه زوفران 4mg." },
+            { id: "stm-5", category: "stomach", categoryName: "أدوية المعدة والجهاز الهضمي", name: "Ranitidine / Famotidine", trade: "فاموتين / زانتك (Famotin)", icon: "fa-bottle-droplet", color: "purple", usage: "تخفيف حموضة المعدة والارتجاع المريئي وحماية بطانة الجدار المعوي.", dose: "20mg - 50mg IV مخفف بطيء كل 12 ساعة.", precautions: "تعديل الجرعة في حالات الفشل الكلوي المزمن.", example: "مريض يعاني من حرقان شديد بالمعدة وألم في فم المعدة يُعطى فاموتين." },
+            { id: "stm-6", category: "stomach", categoryName: "أدوية المعدة والجهاز الهضمي", name: "Hyoscine Butylbromide", trade: "بوسكوبان (Buscopan)", icon: "fa-hand-dots", color: "emerald", usage: "مغص المعدة، تقلصات القولون والمجاري البولية والمرارة.", dose: "20mg (أمبول واحد) IV بطيء أو IM.", precautions: "يحظر استخدامه في حالات الجلوكوما وتضخم البروستاتا واحتباس البول.", example: "مريض يشتكي من مغص كلوي وحصوة بالمثانة تم حريكس بوسكوبان لتخفيف المغص." },
+            { id: "stm-7", category: "stomach", categoryName: "أدوية المعدة والجهاز الهضمي", name: "Esomeprazole IV", trade: "نكسيوم (Nexium IV)", icon: "fa-pills", color: "indigo", usage: "معالجة التآكل المريئي وقرح المعدة الشديدة ومصاحبة علاج النزيف.", dose: "40mg IV ينقط خلال 10-30 دقيقة.", precautions: "عدم الخلت مع محاليل أخرى غير السلاين أو الدكستروز.", example: "مريض يحضر لعملية منظار معدة بسبب الارتجاع المريئي." },
+
+            // --- Analgesics & Antipyretics Category (المسكنات وخافضات الحرارة) ---
+            { id: "alg-1", category: "analgesics", categoryName: "المسكنات وخافضات الحرارة", name: "Paracetamol IV", trade: "بيرفالجان / أسيتا مينوفين (Perfalgan)", icon: "fa-temperature-arrow-down", color: "sky", usage: "خفض الحرارة العالية بسرعة وتسكين الآلام المتوسطة بعد الجراحة والحوادث.", dose: "1000mg (محلول 100ml) تسريب وريدي خلال 15 دقيقة (يكرر كل 6 ساعات).", precautions: "الحد الأقصى باليوم 4g، يحذر تجاوزه لمنع التسمم الكبدي Acute Liver Failure.", example: "مريض حرارته 39.5°C بعد عملية جراحية، تم تنقيط 1000mg بيرفالجان وريدي ورجعت طبيعية." },
+            { id: "alg-2", category: "analgesics", categoryName: "المسكنات وخافضات الحرارة", name: "Diclofenac Sodium", trade: "فولتارين / أولفين (Voltaren)", icon: "fa-syringe", color: "rose", usage: "مسكن ومضاد التهاب قوي للمغص الكلوي، آلام العظام، والمفاصل والأسنان.", dose: "75mg (أمبول واحد) عميق بالحجم العضلي (IM) فقط.", precautions: "يمنع حقنه وريدياً بطريقة مباشرة، وممنوع لمرضى قرحة المعدة والفشل الكلوي.", example: "مريض جاء للطوارئ بمغص كلوي شديد حصوة بالكلى تم إعطاؤه فولتارين عضلي." },
+            { id: "alg-3", category: "analgesics", categoryName: "المسكنات وخافضات الحرارة", name: "Ibuprofen IV", trade: "ايبروفين / كالدول (Caldolor)", icon: "fa-tablets", color: "amber", usage: "تخفيف الآلام الحادة وخفض الحرارة المستعصية والتهابات المفاصل.", dose: "400mg - 800mg تسريب وريدي خلال 30 دقيقة.", precautions: "تجنبه في حالات الجفاف النزفي ومرضى الربو والقصور الكلوي.", example: "مريض حرارة مرتفعة وآلام مفاصل حادة لم تستجب للباراسيتامول أُعطي ايبوبروفين وريدي." },
+            { id: "alg-4", category: "analgesics", categoryName: "المسكنات وخافضات الحرارة", name: "Ketorolac", trade: "ترادول / تورادول (Toradol)", icon: "fa-bolt", color: "teal", usage: "مسكن مسكن قوي جداً لآلام ما بعد العمليات والحصوات دون تأثير مخدر.", dose: "15mg - 30mg IV / IM كحد أقصى 5 أيام متتالية.", precautions: "حذر من زيادة مدة الاستخدام لتجنب الفشل الكلوي وتآكل جدار المعدة.", example: "مريض طوارئ يعاني من ألم أسفل الظهر حاد جداً أُعطي تورادول 30mg وريدي." },
+            { id: "alg-5", category: "analgesics", categoryName: "المسكنات وخافضات الحرارة", name: "Tramadol", trade: "ترامادول (Tramal)", icon: "fa-capsules", color: "purple", usage: "تسكين الآلام المتوسطة إلى الشديدة كالكسور والحروق وعمليات العظام.", dose: "50mg - 100mg IV مخفف ينقط ببطء أو IM.", precautions: "قد يسبب غثيان ودوار شديد، وتشنجات أو هبوط تنفسي إذا أُعطي سريعاً.", example: "مريض كسر مضاعف بالفخذ تم تنقيط 50mg ترامادول مخففة في سلاين." },
+            { id: "alg-6", category: "analgesics", categoryName: "المسكنات وخافضات الحرارة", name: "Nefopam", trade: "أكوبان (Acupan)", icon: "fa-pills", color: "blue", usage: "تسكين الآلام الحادة بعد الجراحة والرعشة المصاحبة للإفاقة من التخدير.", dose: "20mg IM أو تسريب وريدي بطيء جداً خلال 15 دقيقة.", precautions: "قد يسبب تسارع نبضات القلب وجفاف الفم وتغير لون البول للوردي.", example: "مريض يرتجف ويعاني من ألم شديد في غرفة الإفاقة بعد العملية أُعطي أكوبان." },
+
+            // --- Fluids & Solutions Category ---
+            { id: "fluid-1", category: "fluids", categoryName: "المحاليل الوريدية", name: "Normal Saline 0.9%", trade: "محلول ملحي نظامي", icon: "fa-bottle-water", color: "sky", usage: "تعويض السوائل، رفع ضغط الدم، غسيل الجروح، وتخفيف الأدوية الوريدية.", dose: "حسب الحالة (500ml - 1000ml) تسريب وريدي سريعة في الصدمة.", precautions: "يحذر استخدامه بكثرة في مرضى هبوط القلب والفشل الكلوي لمنع السوائل على الرئة.", example: "مريض حادث سير وصل للطوارئ بضغط (80/50)، تم تركيب يب كاستر وإعطاء 1 لتر نورمال سلاين سريع." },
+            { id: "fluid-2", category: "fluids", categoryName: "المحاليل الوريدية", name: "Ringer's Lactate (RL)", trade: "رينجر لاكتات", icon: "fa-vial", color: "teal", usage: "محلول متوازن جداً للحروق البليغة، نزيف الجراحة، والتجفاف الحاد.", dose: "1000ml تسريب وريدي بسرعة تتناسب مع درجة الحرق والتجفاف.", precautions: "يمنع خلطه مع دم منقول مباشرة أو إعطائه لمرضى فشل الكبد الحاد.", example: "مريض حروق درجة ثانية من النسبة 30%، يتم تركيب رينجر لاكتات بحسب معادلة باكرلاند." },
+            { id: "fluid-3", category: "fluids", categoryName: "المحاليل الوريدية", name: "Dextrose 5% in Water (D5W)", trade: "جلوكوز 5%", icon: "fa-droplet", color: "indigo", usage: "توفير السوائل الخالية من الصوديوم، معالجة الجفاف السكري، ومذيب للحقن.", dose: "500ml تسريب وريدي بطيء.", precautions: "ممنوع في حالات هبوط السكر الحاد جداً (يحتاج D50%) ولا يعطى لمرضى إصابات الرأس.", example: "مريض يعاني من جفاف شديد وارتفاع صوديوم الدم يتم تنقيط D5W له." },
+            { id: "fluid-4", category: "fluids", categoryName: "المحاليل الوريدية", name: "Dextrose 10% / 50%", trade: "دكستروز مركز", icon: "fa-cubes-stacked", color: "amber", usage: "علاج هبوط سكر الدم الحاد الغيبوبي (Hypoglycemia).", dose: "50ml من D50W وريدي مباشر بطيء جداً عبر كانيولا كبيرة.", precautions: "محرق للشراب، يجب التأكد من وجود الكانيولا في الوريد بشكل ممتاز لتجنب النخر.", example: "مريض سكري فاقد للوعي بالسكر (30 mg/dL)، أُعطي D50W وريدي فاستعاد وعيه فوراً." },
+            { id: "fluid-5", category: "fluids", categoryName: "المحاليل الوريدية", name: "Dextrose Normal Saline (DNS)", trade: "سلاين مع جلوكوز", icon: "fa-glass-water-droplet", color: "emerald", usage: "تعويض التغذية والسوائل للمرضى الصائمين بعد العمليات الجراحية.", dose: "1000ml ينقط على مدى 8 ساعات.", precautions: "مراقبة مستوى السكر في الدم باستمرار.", example: "مريض بعد عملية استئصال الزائدة صائم حتى عودة حركة الأمعاء، يُعطى DNS." },
+            { id: "fluid-6", category: "fluids", categoryName: "المحاليل الوريدية", name: "Mannitol 20%", trade: "مانيتول مدر اسموزي", icon: "fa-flask-vial", color: "purple", usage: "تقليل الضغط داخل الجمجمة (ICP) وضغط العين في الجلوكوما.", dose: "100ml - 200ml تسريب سريع خلال 30 دقيقة.", precautions: "يجب استخدام فلاتر تسريب ومراقبة إنتاج البول، ممنوع في الفشل الكلوي التام.", example: "مريض نزيف بالمخ مع ارتفاع ضغط الجمجمة، تم إعطاؤه مانيتول لتخفيف التورم." },
+            { id: "fluid-7", category: "fluids", categoryName: "المحاليل الوريدية", name: "Sodium Bicarbonate 8.4%", trade: "بيكربونات الصوديوم", icon: "fa-heart-pulse", color: "rose", usage: "تصحيح الحموضة الشديدة بالدم (Metabolic Acidosis) وارتفاع البوتاسيوم.", dose: "50ml - 100ml وريدي بطيء بحسب تحليل غازات الدم ABG.", precautions: "يجب تجنب الخلط المباشر مع الكالسيوم لأنه يترسب فوراً.", example: "مريض صدمة حمضية DKA مع حموضة دم pH = 6.9، أُعطي بيكربونات." },
+
+            // --- Resuscitation & Emergency Category ---
+            { id: "res-1", category: "resuscitation", categoryName: "أدوية الإنعاش والإنقاذ", name: "Adrenaline / Epinephrine", trade: "أدرينالين (EPI)", icon: "fa-bolt-lightning", color: "rose", usage: "الإنعاش قلبي رئوي (CPR)، الصدمة التحسسية (Anaphylaxis)، الربو الحاد.", dose: "في CPR: امبول 1mg وريدي كل 3-5 دقائق. بالحساسية: 0.3mg عضلي.", precautions: "يرفع نبضات القلب والضغط بشكل حاد جداً.", example: "توقف قلب مريض في الطوارئ، أُعطي 1mg أدرينالين وريدي مع الضغط الصدري." },
+            { id: "res-2", category: "resuscitation", categoryName: "أدوية الإنعاش والإنقاذ", name: "Atropine Sulfate", trade: "أتروبين", icon: "fa-heart-crack", color: "amber", usage: "بطء نبضات القلب الشديد (Bradycardia)، وتسمم المبيدات الحشرية.", dose: "0.5mg - 1mg وريدي كرر كل 3 دقائق حتى حد 3mg.", precautions: " يسبب جفاف الفم واتساع حدقة العين وزيادة الحرارة.", example: "مريض نبضه 35 نبضة بالدقيقة مع دوخة، أُعطي 1mg أتروبين لرفع النبض." },
+            { id: "res-3", category: "resuscitation", categoryName: "أدوية الإنعاش والإنقاذ", name: "Naloxone", trade: "نالوكسون (Narcan)", icon: "fa-shield-cat", color: "indigo", usage: "الترياق المضاد لسمية والمفرطة من المورفين والمسكنات الأفيونية.", dose: "0.4mg - 2mg IV/IM كرر عند الحاجة.", precautions: "قد يسبب إفاقة مفاجئة للمريض وهياج شديد وألم.", example: "جرعة زائدة مورفين مع هبوط تنفس 6 أنفاس، تم إعطاؤه نالوكسون فاستعاد التنفس." },
+            { id: "res-4", category: "resuscitation", categoryName: "أدوية الإنعاش والإنقاذ", name: "Norepinephrine", trade: "ليفوفيد (Levophed)", icon: "fa-chart-line-up", color: "purple", usage: "رفع الضغط في حالات الصدمة النزفية والإنتانية الشديدة (Septic Shock).", dose: "مضخة تسريب وريدي مستمر من 2 to 12 mcg/min.", precautions: "يجب الإعطاء في وريد مركزي سنترال لاين لمنع تلف الأنسجة.", example: "مريض تسمم دموي ضغطه (60/30)، تم البدء بتنقيط الليفوفيد عبر الميكرودريب." },
+            { id: "res-5", category: "resuscitation", categoryName: "أدوية الإنعاش والإنقاذ", name: "Dopamine", trade: "دوبامين", icon: "fa-gauge-high", color: "emerald", usage: "دعم ضغط الدم وقوة انقباض القلب في هبوط القلب والصدمات.", dose: "تنقيط مستمر 2 - 20 mcg/kg/min حسب الهدف.", precautions: "قد يسبب رفرفة وتسارع أذيني/بطيني خطير.", example: "مريض صدمة قلبية يُحقن بالدوبامين لرفع نتاج القلب." },
+            { id: "res-6", category: "resuscitation", categoryName: "أدوية الإنعاش والإنقاذ", name: "Calcium Gluconate", trade: "كالسيوم جلوكونات", icon: "fa-bone", color: "cyan", usage: "علاج ارتفاع البوتاسيوم الخطير، حماية القلب، وتسمم المغنيسيوم.", dose: "10ml من 10% IV بطيء جداً على مدار 10 دقائق.", precautions: "إذا أُعطي بسرعة يسبب تباطؤ نبض القلب وتوقف فجائي.", example: "مريض غسيل كلوى البوتاسيوم عنده 7.5 mEq/L، أُعطي كالسيوم بحذر لحماية قلبه." },
+            { id: "res-7", category: "resuscitation", categoryName: "أدوية الإنعاش والإنقاذ", name: "Hydrocortisone / Solu-Cortef", trade: "سولو كورتيف", icon: "fa-syringe", color: "amber", usage: "الصدمات التحسسية الحادة، نوبات الربو الشديدة، وهبوط الإدرينالين.", dose: "100mg - 200mg IV مباشر.", precautions: "يرفع نسبة السكر بالدم وضغط الدم.", example: "قرصة دبور تسببت بانتفاخ الشفة والوجه مع ضيق تنفس، أُعطي هيدروكورتيزون." },
+
+            // --- Cardiac Category ---
+            { id: "card-1", category: "cardiac", categoryName: "القلب والأوعية الدموية", name: "Amiodarone", trade: "كوردارون (Cordarone)", icon: "fa-wave-square", color: "rose", usage: "اضطرابات نبض القلب الخطيرة (VT / VF / AF).", dose: "جرعة أولى 300mg IV بولص في CPR، أو 150mg على 10 دقائق.", precautions: "قد يسبب هبوط ضغط وتباطؤ نبض حاد.", example: "مريض يعاني من تسارع بطيني VT، أُعطي 150mg كوردارون محلولة في D5W." },
+            { id: "card-2", category: "cardiac", categoryName: "القلب والأوعية الدموية", name: "Furosemide", trade: "لازيكس (Lasix)", icon: "fa-filter-water", color: "sky", usage: "مدر بول قوي لتخفيف التورم، وسوائل الرئة (Pulmonary Edema)، واعتلال الضغط.", dose: "20mg - 80mg IV مباشر بطيء.", precautions: "ينقص البوتاسيوم والضغط ويسبب جفافاً إذا أفرط.", example: "مريض ضيق تنفس بسبب ماء على الرئة، أُعطي 40mg لازيكس فخرج بول غزير وتحسن." },
+            { id: "card-3", category: "cardiac", categoryName: "القلب والأوعية الدموية", name: "Nitroglycerin (NTG)", trade: "ايزورديل / نيتروجليسرين", icon: "fa-heart-pulse", color: "red", usage: "علاج الذبحة الصدرية، الجلطة القلبية، والارتفاع الحاد للضغط.", dose: "بخاخ تحت اللسان أو 0.5mg حبة، أو تنقيط وريدي مستمر.", precautions: "ممنوع كلياً إذا كان الضغط السفل أقل من 90 أو استخدم أدوية مقوية جنسياً.", example: "ألم بالصدر ينزل للذراع الأيسر، أُعطي حبة نيتروجليسرين تحت اللسان." },
+            { id: "card-4", category: "cardiac", categoryName: "القلب والأوعية الدموية", name: "Adenosine", trade: "أدينوسين", icon: "fa-stopwatch", color: "purple", usage: "إنهاء التسارع الفوق بطيني المفاجئ (SVT).", dose: "6mg وريدي سريع جداً يعقبه دفع 20ml سلاين، ثم 12mg إن لم يستجب.", precautions: "يسبب توقف للقلب لثوانٍ معدودة يرافقه شعور بالخوف.", example: "مريض نبضه 190 بالدقيقة SVT، أُعطي أدينوسين دفع سريع في أقرب كانيولا." },
+            { id: "card-5", category: "cardiac", categoryName: "القلب والأوعية الدموية", name: "Digoxin", trade: "لانوكسين (Lanoxin)", icon: "fa-heart", color: "blue", usage: "تقوية انقباض القلب في الهبوط والرجفان الأذيني (AF).", dose: "0.25mg - 0.5mg IV بطيء جداً.", precautions: "يجب فحص النبض قبله (ممنوع إذا كان النبض أقل من 60).", example: "مريض رجفان أذيني AF مع نبض عالي، أُعطي لانوكسين لتهدئة معدل البطين." },
+            { id: "card-6", category: "cardiac", categoryName: "القلب والأوعية الدموية", name: "Heparin", trade: "هيبارين وريدي", icon: "fa-droplet-slash", color: "indigo", usage: "مضاد تجلط لعلاج الجلطات الرئوية، والجلطات الساقية والقلبية.", dose: "5000 units IV بولص ثم تنقيط مستمر حسب تحليل PTT.", precautions: "مراقبة علامات النزيف (الدم في البول، نزيف اللثة).", example: "مريض جلطة ساق عميقة DVT بدأ على تسريب هيبارين وريدي." },
+            { id: "card-7", category: "cardiac", categoryName: "القلب والأوعية الدموية", name: "Enoxaparin", trade: "كليكسان (Clexane)", icon: "fa-syringe", color: "teal", usage: "مائع للدم تحت الجلد للوقاية والعلاج من التجلطات.", dose: "40mg تحت الجلد يومياً للوقاية، أو 1mg/kg للجرعة العلاجية.", precautions: "يحقن في جدار البطن دون تفريغ فقاعة الهواء من الإبرة.", example: "مريض طريح الفراش بالقسم أُعطي كليكسان للوقاية من التجلط." },
+
+            // --- Antibiotics Category ---
+            { id: "ab-1", category: "antibiotics", categoryName: "المضادات الحيوية", name: "Ceftriaxone", trade: "روسيفين (Rocephin)", icon: "fa-shield-halved", color: "emerald", usage: "مضاد واسع المجال لالتهاب الرئة، السحايا، ومسالك البول.", dose: "1g - 2g IV / IM يومياً.", precautions: "يجب عمل فحص حساسية، ممنوع خلطه مع محاليل تحتوي كالسيوم.", example: "مريض التهاب رئوي حاد يُحقن 1g روسيفين وريدي كل 12 ساعة." },
+            { id: "ab-2", category: "antibiotics", categoryName: "المضادات الحيوية", name: "Augmentin IV", trade: "أوجمنتين (Amoxicillin/Clavulanate)", icon: "fa-bacteria", color: "sky", usage: "التهابات الأنسجة، الجروح الجراحية، والتنفسي.", dose: "1.2g IV بطيء كل 8 ساعات.", precautions: "فحص الحساسية للبنسلين ضروري جداً.", example: "التهاب جرح بعد عملية، تقرر له أوجمنتين وريدي." },
+            { id: "ab-3", category: "antibiotics", categoryName: "المضادات الحيوية", name: "Meropenem", trade: "ميرونيم (Meronem)", icon: "fa-vial-virus", color: "purple", usage: "مضاد حيوي قوي جداً للعدوى البكتيرية المعقدة في العناية.", dose: "1g IV تنقيط على مدار 30 دقيقة كل 8 ساعات.", precautions: "مراقبة وظائف الكلى والتشنجات.", example: "مريض عناية مركزة يعاني من تسمم دموي صلب bacterial sepsis." },
+            { id: "ab-4", category: "antibiotics", categoryName: "المضادات الحيوية", name: "Metronidazole", trade: "فلاجيل (Flagyl IV)", icon: "fa-wine-bottle", color: "amber", usage: "التهابات البكتيريا اللاهوائية والطفيليات بالبطن والأمعاء.", dose: "500mg / 100ml تسريب وريدي كل 8 ساعات.", precautions: "تسريب بطيء، يسبب طعم معدني بالفم.", example: "مريض بعد عملية انفجار الزائدة الدودية أُعطي فلاجيل وريدي." },
+
+            // --- Respiratory Category ---
+            { id: "resp-1", category: "respiratory", categoryName: "الجهاز التنفسي", name: "Salbutamol", trade: "فنتولين (Ventolin Solution)", icon: "fa-wind", color: "teal", usage: "توسيع الشعب الهوائية في نوبات الربو والانسداد الرئوي المزمن.", dose: "0.5ml - 1ml في جهاز النيبولايزر مع سلاين.", precautions: "يزيد نبضات القلب ويسبب رجفة باليدين.", example: "مريض ربو كتمة بالصدر، تم عمل جلسة تبخيرة فنتولين له." },
+            { id: "resp-2", category: "respiratory", categoryName: "الجهاز التنفسي", name: "Ipratropium", trade: "اتروفنت (Atrovent)", icon: "fa-lungs", color: "indigo", usage: "موسع شعب هوائية يدمج مع الفنتولين لتوسيع الأزمة التنفسية.", dose: "امبول واحد بجلسة التبخير.", precautions: "تجنب ملامستها للعين لمنع اتساع الحدقة.", example: "جلسة تبخير مشتركة (فنتولين + اتروفنت) لمريض ضيق تنفس شديد." },
+            { id: "resp-3", category: "respiratory", categoryName: "الجهاز التنفسي", name: "Dexamethasone", trade: "ديكساميثازون", icon: "fa-pills", color: "rose", usage: "مضاد التهاب قوي للربو، تورم الحنجرة، والحساسية.", dose: "4mg - 8mg IV / IM.", precautions: "يرفع نسبة السكر والمناعة تنخفض مع الاستخدام المفرط.", example: "طفل يعاني من صرير بالصوت وتورم بالحنجرة أُعطي ديكساميثازون." }
+        ];
+
+        // Additional items to reach 50+ total items
+        const extraDrugs = [
+            { name: "Magnesium Sulfate", trade: "مغنيسيوم سلفات", cat: "resuscitation", catN: "أدوية الإنعاش والإنقاذ", icon: "fa-vial", col: "purple", use: "تسمم الحمل (Eclampsia)، نوبات الربو الحادة، واضطراب نبض Torsades.", dose: "1g - 4g IV ينقط بحذر." },
+            { name: "Morphine Sulfate", trade: "مورفين مخدر", cat: "resuscitation", catN: "أدوية الإنعاش والإنقاذ", icon: "fa-capsules", col: "purple", use: "تسكين الآلام الجسيمة والجلطات وحالات حروق العناية.", dose: "2mg - 5mg IV بطيء مخفف." },
+            { name: "Fentanyl", trade: "فنتانيل وريدي", cat: "resuscitation", catN: "أدوية الإنعاش والإنقاذ", icon: "fa-tablets", col: "indigo", use: "تسكين قوي وتخدير أثناء التنبيب وتركيب أنابيب التنفس الاصطناعي.", dose: "25 - 50 mcg IV بطيء." },
+            { name: "Diazepam", trade: "فاليوم (Valium)", cat: "resuscitation", catN: "أدوية الإنعاش والإنقاذ", icon: "fa-bed", col: "teal", use: "وقف نوبات الصرع والتشنجات المستمرة والتوتر شديد.", dose: "5mg - 10mg IV بطيء." },
+            { name: "Propofol", trade: "بروبوفول (Diprivan)", cat: "resuscitation", catN: "أدوية الإنعاش والإنقاذ", icon: "fa-eye-slash", col: "rose", use: "منوم ومخدر عام في العناية المركزة والعمليات.", dose: "تسريب وريدي حسب الوزن برعاية الطبيب." },
+            { name: "Potassium Chloride (KCl)", trade: "بوتاسيوم مركز", cat: "fluids", catN: "المحاليل الوريدية", icon: "fa-vial-circle-check", col: "purple", use: "تعويض انخفاض البوتاسيوم بالدم.", dose: "تنقيط بطيء جداً داخل محلول (ممنوع مباشر كلياً)." },
+            { name: "Vancomycin", trade: "فانكومايسين", cat: "antibiotics", catN: "المضادات الحيوية", icon: "fa-shield-cat", col: "amber", use: "علاج بكتيريا MRSA والعدوى المستعصية.", dose: "1g IV ينقط على مدى ساعة على الأقل." },
+            { name: "Ciprofloxacin IV", trade: "سيبروباي (Ciprobay)", cat: "antibiotics", catN: "المضادات الحيوية", icon: "fa-bottle-water", col: "sky", use: "التهابات المسالك البولية المعقدة والأمعاء.", dose: "400mg / 200ml تسريب وريدي." },
+            { name: "Amikacin", trade: "أميكاسين", cat: "antibiotics", catN: "المضادات الحيوية", icon: "fa-droplet", col: "teal", use: "مضاد حيوي للبكتيريا السالبة الصعبة.", dose: "500mg IV ينقط بحذر على الكلى والتنفس." },
+            { name: "Esmolol / Metoprolol", trade: "بيتا بلوكر وريدي", cat: "cardiac", catN: "القلب والأوعية الدموية", icon: "fa-heart-circle-bolt", col: "rose", use: "إبطاء نبضات القلب والضغط المرتفع.", dose: "جرعات وريدية صغيرة تحت مراقبة المونيتور." },
+            { name: "Hydralazine", trade: "هايدرالازين", cat: "cardiac", catN: "القلب والأوعية الدموية", icon: "fa-arrow-down-short-wide", col: "emerald", use: "خوض ضغط الدم الحاد وخاصة للحوامل.", dose: "5mg - 10mg IV بطيء." },
+            { name: "Labetalol", trade: "لابيتالول", cat: "cardiac", catN: "القلب والأوعية الدموية", icon: "fa-heart-pulse", col: "indigo", use: "علاج الطوارئ لارتفاع ضغط الدم الشديد حاد.", dose: "20mg IV بطيء كل 10 دقائق." },
+            { name: "Tranexamic Acid", trade: "كابرون (Kapron / TXA)", cat: "resuscitation", catN: "أدوية الإنعاش والإنقاذ", icon: "fa-droplet-slash", col: "red", use: "إيقاف النزيف الحاد في الحوادث والعمليات.", dose: "1g IV تنقيط على 10 دقائق." },
+            { name: "Vitamin K", trade: "فيتامين ك", cat: "resuscitation", catN: "أدوية الإنعاش والإنقاذ", icon: "fa-vial", col: "amber", use: "معادلة ومناقضة مفعول الورفارين المفرط والنزيف.", dose: "10mg IV بطيء جداً أو IM." },
+            { name: "Aminophylline", trade: "أمينوفيلين", cat: "respiratory", catN: "الجهاز التنفسي", icon: "fa-lungs-virus", col: "purple", use: "موسع شعب هوائية شديد للربو المستعصي.", dose: "تنقيط وريدي بطيء بحذر شديد." },
+            { name: "Haloperidol", trade: "هالدول (Haldol)", cat: "resuscitation", catN: "أدوية الإنعاش والإنقاذ", icon: "fa-brain", col: "indigo", use: "السيطرة على الهياج النفسي الشديد وهذيان العناية.", dose: "2.5mg - 5mg IM / IV." }
+        ];
+
+        extraDrugs.forEach((item, index) => {
+            drugsData.push({
+                id: `extra-${index}`,
+                category: item.cat,
+                categoryName: item.catN,
+                name: item.name,
+                trade: item.trade,
+                icon: item.icon,
+                color: item.col,
+                usage: item.use || item.usage,
+                dose: item.dose,
+                precautions: "يستوجب مراجعة الملف الطبي ومراقبة العلامات الحيوية أثناء الإعطاء.",
+                example: `حالة سريرية بطوارئ المستشفى تطلبت إعطاء علاج ${item.trade} بحذر وحسب بروتوكول القسم.`
+            });
+        });
+
+        const colorStyles = {
+            sky: { bg: "bg-sky-500/10", text: "text-sky-500", border: "hover:border-sky-500" },
+            teal: { bg: "bg-teal-500/10", text: "text-teal-500", border: "hover:border-teal-500" },
+            indigo: { bg: "bg-indigo-500/10", text: "text-indigo-500", border: "hover:border-indigo-500" },
+            amber: { bg: "bg-amber-500/10", text: "text-amber-500", border: "hover:border-amber-500" },
+            emerald: { bg: "bg-emerald-500/10", text: "text-emerald-500", border: "hover:border-emerald-500" },
+            purple: { bg: "bg-purple-500/10", text: "text-purple-500", border: "hover:border-purple-500" },
+            rose: { bg: "bg-rose-500/10", text: "text-rose-500", border: "hover:border-rose-500" },
+            blue: { bg: "bg-blue-500/10", text: "text-blue-500", border: "hover:border-blue-500" },
+            red: { bg: "bg-red-500/10", text: "text-red-500", border: "hover:border-red-500" },
+            orange: { bg: "bg-orange-500/10", text: "text-orange-500", border: "hover:border-orange-500" },
+            cyan: { bg: "bg-cyan-500/10", text: "text-cyan-500", border: "hover:border-cyan-500" }
+        };
+
+        let currentCategory = 'all';
+
+        function renderGrid(items) {
+            const grid = document.getElementById('drugsGrid');
+            grid.innerHTML = '';
+
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fa-solid fa-capsules text-4xl text-slate-300 dark:text-slate-700 mb-3"></i>
+                        <p class="text-slate-500 dark:text-slate-400 font-bold">لم يتم العثور على أي علاج يطابق بحثك.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            items.forEach(drug => {
+                const style = colorStyles[drug.color] || colorStyles.sky;
+                
+                const card = document.createElement('div');
+                card.onclick = () => openModal(drug.id);
+                card.className = `glass-card rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 ${style.border} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between h-full`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl ${style.bg} ${style.text} flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid ${drug.icon}"></i>
+                            </div>
+                            <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                                ${drug.categoryName}
+                            </span>
+                        </div>
+
+                        <h3 class="text-base font-extrabold text-slate-900 dark:text-white leading-snug mb-1 group-hover:text-sky-500 transition-colors">
+                            ${drug.name}
+                        </h3>
+                        <p class="text-xs text-sky-600 dark:text-sky-400 font-bold mb-3">
+                            ${drug.trade}
+                        </p>
+
+                        <p class="text-slate-600 dark:text-slate-400 text-xs line-clamp-3 leading-relaxed mb-4">
+                            ${drug.usage}
+                        </p>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sky-600 dark:text-sky-400 font-bold text-xs">
+                        <span>التفاصيل والجرعة</span>
+                        <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-4 py-2 rounded-xl text-xs font-bold transition-all';
+            });
+            event.currentTarget.className = 'filter-btn active bg-sky-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md';
+
+            applySearchAndFilter();
+        }
+
+        function applySearchAndFilter() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            
+            const filtered = drugsData.filter(d => {
+                const matchesCat = (currentCategory === 'all' || d.category === currentCategory);
+                const matchesQuery = d.name.toLowerCase().includes(query) || 
+                                     d.trade.toLowerCase().includes(query) || 
+                                     d.usage.toLowerCase().includes(query);
+                return matchesCat && matchesQuery;
+            });
+
+            renderGrid(filtered);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', applySearchAndFilter);
+
+        function openModal(id) {
+            const drug = drugsData.find(d => d.id === id);
+            if (!drug) return;
+
+            const style = colorStyles[drug.color] || colorStyles.sky;
+
+            document.getElementById('modalCategory').innerText = drug.categoryName;
+            document.getElementById('modalCategory').className = `text-xs font-bold ${style.text} uppercase tracking-wider`;
+            
+            document.getElementById('modalTitle').innerText = drug.name;
+            document.getElementById('modalTradeName').innerText = `الاسم الشائع/التجاري: ${drug.trade}`;
+            document.getElementById('modalUsage').innerText = drug.usage;
+            document.getElementById('modalDose').innerText = drug.dose;
+            document.getElementById('modalPrecautions').innerText = drug.precautions;
+            document.getElementById('modalExample').innerText = drug.example;
+
+            const iconBox = document.getElementById('modalIconBox');
+            iconBox.className = `w-12 h-12 rounded-xl ${style.bg} ${style.text} flex items-center justify-center text-xl shrink-0`;
+            document.getElementById('modalIcon').className = `fa-solid ${drug.icon}`;
+
+            const modal = document.getElementById('detailModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.add('opacity-0');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        document.getElementById('detailModal').addEventListener('click', (e) => {
+            if (e.target.id === 'detailModal') closeModal();
+        });
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg';
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-moon text-lg';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            }
+        });
+
+        renderGrid(drugsData);
+    </script>
+</body>
+</html>

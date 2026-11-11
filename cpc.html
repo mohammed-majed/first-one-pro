@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموسوعة الشاملة للتحاليل الطبية وتقارير المختبر السريرية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        clinical: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        mono: ['Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        .glass-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-box {
+            background: rgba(30, 41, 59, 0.95);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-emerald-500/30">
+                    <i class="fa-solid fa-file-medical text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">الموسوعة الشاملة للتحاليل وتقارير المختبر</h1>
+                    <p class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">Clinical Laboratory & Interactive Report Simulator</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="https://wa.me/9707483258" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/20 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>تواصل مع المطور</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+        <!-- Hero Intro -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="inline-block bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-emerald-200 dark:border-emerald-800">
+                المرجع المخبري السريري مع محاكي التقارير
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mb-4 leading-tight">
+                دليل التحاليل الطبية الشامل (دم، كلى، بول، مخزون حديد، سكر، وفيتامينات)
+            </h2>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+                انقر على أي تحليل لعرض تفاصيل القراءة، والدلالة الإكلينيكية، ومحاكاة حقيقية لورقة المختبر الرسمية.
+            </p>
+        </div>
+
+        <!-- Filter Navigation Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="filterContainer">
+            <button onclick="filterLabs('all')" class="lab-btn active bg-emerald-600 text-white px-3 py-2 rounded-xl text-xs font-bold transition-all shadow-md">جميع التحاليل</button>
+            <button onclick="filterLabs('cbc')" class="lab-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl text-xs font-bold transition-all">صورة الدم (CBC)</button>
+            <button onclick="filterLabs('iron')" class="lab-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl text-xs font-bold transition-all">مخزون الحديد والدم</button>
+            <button onclick="filterLabs('sugar')" class="lab-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl text-xs font-bold transition-all">تحاليل السكر</button>
+            <button onclick="filterLabs('vitamins')" class="lab-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl text-xs font-bold transition-all">الفيتامينات الأساسية</button>
+            <button onclick="filterLabs('kidney')" class="lab-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl text-xs font-bold transition-all">وظائف الكلى والبول</button>
+            <button onclick="filterLabs('hormones')" class="lab-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl text-xs font-bold transition-all">الغدد والقلب والكبد</button>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16" id="labsGrid">
+            <!-- Dynamic Content -->
+        </div>
+
+    </main>
+
+    <!-- Detailed Modal View with Lab Report Simulator -->
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div id="modalContainer" class="bg-white dark:bg-slate-900 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-800 transform scale-95 transition-transform duration-300">
+            
+            <div class="sticky top-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-6 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-10">
+                <div class="flex items-center gap-3">
+                    <div id="modalIconBox" class="w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0">
+                        <i id="modalIcon" class="fa-solid fa-flask"></i>
+                    </div>
+                    <div>
+                        <span id="modalCategory" class="text-xs font-bold uppercase tracking-wider">التصنيف</span>
+                        <h3 id="modalTitle" class="text-lg font-black text-slate-900 dark:text-white leading-tight">اسم التحليل</h3>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-6">
+                <!-- LAB REPORT SIMULATOR -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-file-lines text-emerald-500"></i> محاكي تقرير ورقة المختبر الرسمية (Lab Report)
+                    </h4>
+                    <div class="bg-white text-slate-900 border-2 border-slate-300 rounded-2xl p-5 shadow-inner font-mono text-xs sm:text-sm">
+                        <div class="flex justify-between border-b pb-3 mb-3 border-slate-200">
+                            <div>
+                                <span class="font-bold text-emerald-700 block">HOSPITAL LABORATORY SYSTEM</span>
+                                <span class="text-[10px] text-slate-500">قسم التحاليل السريرية وبنك الدم</span>
+                            </div>
+                            <div class="text-left">
+                                <span class="block text-[11px]"><b>المريض:</b> حالة سريرية نموذجية</span>
+                                <span class="block text-[11px] text-slate-500">التاريخ: 2026-11-11</span>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-right border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-100 text-slate-700 border-b border-slate-300 text-[11px]">
+                                        <th class="p-2">اختبار الفحص (Test)</th>
+                                        <th class="p-2">النتيجة (Result)</th>
+                                        <th class="p-2">الحالة</th>
+                                        <th class="p-2">النطاق الطبيعي (Reference Range)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-200">
+                                        <td id="repTestName" class="p-2 font-bold">---</td>
+                                        <td id="repTestResult" class="p-2 font-black text-emerald-600">---</td>
+                                        <td id="repTestStatus" class="p-2 font-bold text-amber-600">High / Low</td>
+                                        <td id="repTestRange" class="p-2 text-slate-500">---</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-3 text-[10px] text-slate-400 flex justify-between">
+                            <span>* النتيجة معتمدة إلكترونياً من المختبر</span>
+                            <span>التوقيع: مختص المختبر السريري</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interpretation -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">آلية القراءة والدلالة الإكلينيكية</h4>
+                    <div class="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2 text-sm">
+                        <p id="modalInterpretation" class="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line font-medium"></p>
+                    </div>
+                </div>
+
+                <!-- Clinical Example -->
+                <div>
+                    <h4 class="text-xs font-bold text-sky-500 uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-stethoscope"></i> مثال سريري واقعي من الميدان
+                    </h4>
+                    <div class="bg-sky-50 dark:bg-sky-950/40 p-4 rounded-xl border border-sky-100 dark:border-sky-900/50 text-sky-900 dark:text-sky-200 text-sm leading-relaxed whitespace-pre-line font-semibold">
+                        <p id="modalExample"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 dark:bg-slate-900/50 px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeModal()" class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 px-6 py-2.5 rounded-xl font-bold text-sm transition-all">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+            <div>
+                <p class="text-sm font-bold text-slate-700 dark:text-slate-300">جميع الحقوق محفوظة © 2026 - بوابة التمريض التعليمية</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">دليل شامل للتحاليل المخبرية السريرية وتقارير المختبر التفاعلية</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <a href="https://wa.me/9707483258" target="_blank" class="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-100 transition-all">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>+9707483258</span>
+                </a>
+                <div class="text-sm font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700">
+                    تصميم وتطوير <span class="text-emerald-600 dark:text-emerald-400 font-extrabold">م.محمد ابو خليل</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Engine -->
+    <script>
+        const labsData = [
+            // --- 1. CBC ---
+            {
+                id: "cbc-1",
+                category: "cbc",
+                categoryName: "صورة الدم (CBC)",
+                name: "الهيموجلوبين (Hemoglobin - Hb)",
+                icon: "fa-droplet",
+                color: "emerald",
+                normalRange: "13.5 - 17.5 g/dL",
+                sampleResult: "8.0 g/dL (Low)",
+                statusText: "منخفض (Anemia)",
+                interpretation: "• الارتفاع: جفاف حاد أو كثرة حمر الدم.\n• الانخفاض: فقر الدم (Anemia) بسبب نزيف أو سوء تغذية.",
+                example: "مريضة بشحوب ودوخة، هيموجلوبين 8.0 g/dL (منخفض)، مما يثبت إصابتها بفقر دم وتستوجب تقييم ونقل دم."
+            },
+            {
+                id: "cbc-2",
+                category: "cbc",
+                categoryName: "صورة الدم (CBC)",
+                name: "كرات الدم البيضاء (WBCs)",
+                icon: "fa-shield-virus",
+                color: "teal",
+                normalRange: "4,000 - 11,000 /mcL",
+                sampleResult: "18,000 /mcL",
+                statusText: "مرتفع (Infection)",
+                interpretation: "• الارتفاع: عدوى بكتيرية أو التهاب حاد.\n• الانخفاض: ضعف مناعة أو عدوى فيروسية.",
+                example: "طفل بحرارة والتهاب لوز، كرات الدم البيضاء لديه 18,000 (مرتفع)، مما يدل على عدوى بكتيرية نشطة."
+            },
+            {
+                id: "cbc-3",
+                category: "cbc",
+                categoryName: "صورة الدم (CBC)",
+                name: "الصفائح الدموية (Platelets)",
+                icon: "fa-circle-dot",
+                color: "sky",
+                normalRange: "150,000 - 450,000 /mcL",
+                sampleResult: "60,000 /mcL",
+                statusText: "منخفض (Bleeding Risk)",
+                interpretation: "• الارتفاع: التهابات مزمنة.\n• الانخفاض: يرفع خطر النزيف والكدمات.",
+                example: "مريض بكدمات متفرقة، الصفائح 60,000 (منخفض جداً)، مما يمنع إجراء أي تداخل جراحي عاجل."
+            },
+
+            // --- 2. Iron & Storage (مخزون الحديد) ---
+            {
+                id: "iron-1",
+                category: "iron",
+                categoryName: "مخزون الحديد والدم",
+                name: "مخزون الحديد (Ferritin)",
+                icon: "fa-atom",
+                color: "amber",
+                normalRange: "Men: 30 - 300 ng/mL | Women: 15 - 150 ng/mL",
+                sampleResult: "8 ng/mL",
+                statusText: "منخفض جداً (Iron Deficiency)",
+                interpretation: "• الارتفاع: التهابات حادة، أمراض مزمنة، أو تلف كبدي.\n• الانخفاض: نقص مخزون الحديد بالجسم وهو السبب الرئيسي لأنيميا نقص الحديد.",
+                example: "مريضة بشكوى تساقط شعر حاد وإرهاق، ظهر الفريتين لديها 8 ng/mL (منخفض بشدة)، وتم البدء بإعطائها إبر حديد وريدية."
+            },
+            {
+                id: "iron-2",
+                category: "iron",
+                categoryName: "مخزون الحديد والدم",
+                name: "حديد الدم (Serum Iron)",
+                icon: "fa-vial",
+                color: "amber",
+                normalRange: "60 - 170 mcg/dL",
+                sampleResult: "35 mcg/dL",
+                statusText: "منخفض (Low Iron)",
+                interpretation: "• الارتفاع: تسمم بالحديد أو انحلال الدم.\n• الانخفاض: نقص استهلاك الحديد الغذائي أو سوء امتصاص.",
+                example: "فحص حديد الدم أظهر انخفاضاً تزامناً مع هبوط الفريتين، مما يؤكد الإصابة بفقر دم عائدي لنقص الحديد."
+            },
+
+            // --- 3. Diabetes (تحاليل السكر) ---
+            {
+                id: "dia-1",
+                category: "sugar",
+                categoryName: "تحاليل السكر",
+                name: "السكر التراكمي (Glycated Hemoglobin - HbA1c)",
+                icon: "fa-gauge",
+                color: "rose",
+                normalRange: "Normal: < 5.7% | Prediabetes: 5.7 - 6.4% | Diabetes: ≥ 6.5%",
+                sampleResult: "8.2%",
+                statusText: "مرتفع (Uncontrolled Diabetes)",
+                interpretation: "• يعطي قراءة متوسط معدل سكر الدم خلال آخر 3 أشهر.\n• الارتفاع (≥ 6.5%): يدل على عدم انتظام سكر الدم والإصابة بالسكري.",
+                example: "مريض يسأل عن انتظام سكره، ظهر تحليل التراكمي (HbA1c) عند قيمة 8.2% (مرتفع)، مما يعني أن السكر لم يكن منتظماً بالفترة الأخيرة وتطلب تعديل جرعات الأنسولين."
+            },
+            {
+                id: "dia-2",
+                category: "sugar",
+                categoryName: "تحاليل السكر",
+                name: "سكر الدم العشوائي (Random Blood Sugar - RBS)",
+                icon: "fa-chart-line",
+                color: "rose",
+                normalRange: "70 - 140 mg/dL",
+                sampleResult: "280 mg/dL",
+                statusText: "مرتفع حرج (Hyperglycemia)",
+                interpretation: "• الارتفاع (أكثر من 200 مع أعراض): يشير لارتفاع حاد بالسكري قد يقود لحموضة الدم الكيتونية (DKA).",
+                example: "مريض طوارئ بعطش شديد وتبول متكرر، السكر العشوائي لديه 280 mg/dL، وتم تقييمه للسكري الحاد."
+            },
+
+            // --- 4. Vitamins (الفيتامينات) ---
+            {
+                id: "vit-1",
+                category: "vitamins",
+                categoryName: "الفيتامينات الأساسية",
+                name: "فيتامين د (Vitamin D - 25-OH)",
+                icon: "fa-sun",
+                color: "purple",
+                normalRange: "Sufficient: 30 - 100 ng/mL | Deficiency: < 20",
+                sampleResult: "12 ng/mL",
+                statusText: "نقص حاد (Deficiency)",
+                interpretation: "• النقص الحاد (< 20): يسبب ألاماً بالعظام والمفاصل، إرهاق عام، وضعف المناعة وامتصاص الكالسيوم.",
+                example: "شخص يشكو من ألم مستمر بأسفل الظهر والعظام، فحص فيتامين د أظهر 12 ng/mL (نقص حاد)، ووُصف له علاج تعويضي مكثف."
+            },
+            {
+                id: "vit-2",
+                category: "vitamins",
+                categoryName: "الفيتامينات الأساسية",
+                name: "فيتامين ب12 (Vitamin B12)",
+                icon: "fa-pills",
+                color: "purple",
+                normalRange: "200 - 900 pg/mL",
+                sampleResult: "140 pg/mL",
+                statusText: "منخفض (B12 Deficiency)",
+                interpretation: "• النقص: يسبب فقر دم خبيث (Megaloblastic anemia)، تنميل بالأطراف، وضعف بالذاكرة والتركيز.",
+                example: "مريض يشكو من تنميل ووخز بأطراف اصابعه، أظهر تحليل B12 قيمة 140 pg/mL (منخفض)، ووُصف له إبر B12 عضلية."
+            },
+
+            // --- 5. Kidney & Urine ---
+            {
+                id: "kid-1",
+                category: "kidney",
+                categoryName: "وظائف الكلى والبول",
+                name: "الكرياتينين (Serum Creatinine)",
+                icon: "fa-filter",
+                color: "indigo",
+                normalRange: "0.6 - 1.2 mg/dL",
+                sampleResult: "2.8 mg/dL",
+                statusText: "مرتفع (Renal Impairment)",
+                interpretation: "• الارتفاع: مؤشر أساسي على ضعف كفاءة الكلى أو الفشل الكلوي.",
+                example: "مريض مسكنات لفترة طويلة، الكرياتينين 2.8 mg/dL (مرتفع)، مما يدل على حدوث قصور كلوي."
+            },
+            {
+                id: "kid-2",
+                category: "kidney",
+                categoryName: "وظائف الكلى والبول",
+                name: "نيتروجين يوريا الدم (BUN)",
+                icon: "fa-vial",
+                color: "indigo",
+                normalRange: "7 - 20 mg/dL",
+                sampleResult: "45 mg/dL",
+                statusText: "مرتفع (Uremia)",
+                interpretation: "• الارتفاع: قصور كلي، جفاف حاد، أو نزيف بالجهاز الهضمي العلوي.",
+                example: "مريض وصل الطوارئ باستفراغ دموي، أظهر تحليل اليوريا (BUN) ارتفاعاً إلى 45 mg/dL مع طبيعية الكرياتينين."
+            },
+            {
+                id: "uri-1",
+                category: "kidney",
+                categoryName: "وظائف الكلى والبول",
+                name: "تحليل البول الشامل (GUE)",
+                icon: "fa-bottle-water",
+                color: "indigo",
+                normalRange: "Pus: 0-5 | Protein: Negative",
+                sampleResult: "Pus: 25-30 / HPF",
+                statusText: "موجب عدوى (UTI)",
+                interpretation: "• وجود صديد عالي (Pus cells): يدل على التهاب المسالك البولية (UTI).",
+                example: "مريضة تعاني من حرقان شديد، أظهر تحليل البول صديداً عالياً (25-30) وبكتيريا، وتم صرف مضاد حيوي."
+            },
+
+            // --- 6. Hormones, Cardiac & Liver ---
+            {
+                id: "horm-1",
+                category: "hormones",
+                categoryName: "الغدد والقلب والكبد",
+                name: "الهرمون المحفز للدرقية (TSH)",
+                icon: "fa-dna",
+                color: "teal",
+                normalRange: "0.4 - 4.0 mIU/L",
+                sampleResult: "8.5 mIU/L",
+                statusText: "مرتفع (Hypothyroidism)",
+                interpretation: "• الارتفاع: قصور الغدة الدرقية (خمول وزيادة وزن).",
+                example: "مريضة تشكو من تعب وزيادة وزن، أظهر تحليل TSH قيمة 8.5 (مرتفع)، مما يشير لكسل الغدة الدرقية."
+            },
+            {
+                id: "card-1",
+                category: "hormones",
+                categoryName: "الغدد والقلب والكبد",
+                name: "تروبونين القلب (Troponin I / T)",
+                icon: "fa-heart-pulse",
+                color: "rose",
+                normalRange: "Negative (< 0.04)",
+                sampleResult: "0.85 ng/mL",
+                statusText: "إيجابي (Heart Attack)",
+                interpretation: "• الارتفاع: مؤشر قطعي على حدوث جلطة قلبية حادة وتلف عضلة القلب.",
+                example: "مريض بألم حاد بالصدر، أظهر تحليل Troponin نتيجة إيجابية مرتفعة، وتم نقله لقسطرة قلبية طارئة."
+            }
+        ];
+
+        const colorMap = {
+            emerald: { bg: "bg-emerald-500/10", text: "text-emerald-500", border: "hover:border-emerald-500" },
+            teal: { bg: "bg-teal-500/10", text: "text-teal-500", border: "hover:border-teal-500" },
+            sky: { bg: "bg-sky-500/10", text: "text-sky-500", border: "hover:border-sky-500" },
+            indigo: { bg: "bg-indigo-500/10", text: "text-indigo-500", border: "hover:border-indigo-500" },
+            purple: { bg: "bg-purple-500/10", text: "text-purple-500", border: "hover:border-purple-500" },
+            amber: { bg: "bg-amber-500/10", text: "text-amber-500", border: "hover:border-amber-500" },
+            rose: { bg: "bg-rose-500/10", text: "text-rose-500", border: "hover:border-rose-500" }
+        };
+
+        function renderCards(items) {
+            const grid = document.getElementById('labsGrid');
+            grid.innerHTML = '';
+
+            items.forEach(item => {
+                const style = colorMap[item.color] || colorMap.emerald;
+                const card = document.createElement('div');
+                card.onclick = () => openModal(item.id);
+                card.className = `glass-box rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 ${style.border} shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between h-full`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl ${style.bg} ${style.text} flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid ${item.icon}"></i>
+                            </div>
+                            <span class="text-[10px] font-bold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                                ${item.categoryName}
+                            </span>
+                        </div>
+
+                        <h3 class="text-base font-extrabold text-slate-900 dark:text-white leading-snug mb-2 group-hover:text-emerald-500 transition-colors">
+                            ${item.name}
+                        </h3>
+
+                        <div class="bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700/80 mb-4 dir-ltr text-left">
+                            <span class="text-[10px] text-slate-400 font-bold block">Normal Range:</span>
+                            <span class="text-xs font-black ${style.text}">${item.normalRange}</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-emerald-600 dark:text-emerald-400 font-bold text-xs">
+                        <span>عرض التقرير السريري وورقة المختبر</span>
+                        <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function filterLabs(cat) {
+            document.querySelectorAll('.lab-btn').forEach(btn => {
+                btn.className = 'lab-btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl text-xs font-bold transition-all';
+            });
+            event.currentTarget.className = 'lab-btn active bg-emerald-600 text-white px-3 py-2 rounded-xl text-xs font-bold transition-all shadow-md';
+
+            const filtered = cat === 'all' ? labsData : labsData.filter(d => d.category === cat);
+            renderCards(filtered);
+        }
+
+        function openModal(id) {
+            const item = labsData.find(d => d.id === id);
+            if (!item) return;
+
+            const style = colorMap[item.color] || colorMap.emerald;
+
+            document.getElementById('modalCategory').innerText = item.categoryName;
+            document.getElementById('modalCategory').className = `text-xs font-bold ${style.text} uppercase tracking-wider`;
+            document.getElementById('modalTitle').innerText = item.name;
+            
+            // Fill Lab Report Simulator fields
+            document.getElementById('repTestName').innerText = item.name;
+            document.getElementById('repTestResult').innerText = item.sampleResult;
+            document.getElementById('repTestStatus').innerText = item.statusText;
+            document.getElementById('repTestRange').innerText = item.normalRange;
+
+            document.getElementById('modalInterpretation').innerText = item.interpretation;
+            document.getElementById('modalExample').innerText = item.example;
+
+            const iconBox = document.getElementById('modalIconBox');
+            iconBox.className = `w-12 h-12 rounded-xl ${style.bg} ${style.text} flex items-center justify-center text-xl shrink-0`;
+            document.getElementById('modalIcon').className = `fa-solid ${item.icon}`;
+
+            const modal = document.getElementById('detailModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.add('opacity-0');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        document.getElementById('detailModal').addEventListener('click', (e) => {
+            if (e.target.id === 'detailModal') closeModal();
+        });
+
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun text-lg';
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-moon text-lg';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            }
+        });
+
+        renderCards(labsData);
+    </script>
+</body>
+</html>
